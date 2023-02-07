@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -20,11 +20,44 @@ class User extends Authenticatable implements MustVerifyEmail
 
     protected $primaryKey = 'user_id';
     protected $fillable = [
-        'username', 'lname', 'fname', 'mname', 'suffix', 'sex',
-        'bdate',
-        'province', 'city', 'barangay', 'street',
-        'email', 'contact_no', 'role', 'remark',
-        'password', 'avatar'
+        'username', 'lname', 'fname', 'mname',
+        'suffix', 'date_birth', 'sex', 'school_assigned',
+        'civil_status',
+        'civil_status_others', 'height', 'weight', 'blood_type', 'gsis',
+        'pagibig', 'philhealth', 'sss', 'tin', 'agency_idno', 'citizenship',
+        'res_province', 'res_city', 'res_barangay', 'res_street', 'res_houseno_blockno', 'res_zipcode',
+        'per_province', 'per_city', 'per_barangay', 'per_street', 'per_houseno_blockno', 'per_zipcode',
+        'tel_no', 'contact_no', 'email',
+        'spouse_surname', 'spouse_fname', 'spouse_mname', 'spouse_suffix', 'spouse_occupation',
+        'business_name', 'business_address', 'business_contact_no',
+        'father_surname', 'father_fname', 'father_mname', 'father_suffix',
+        'mother_surname', 'mother_fname', 'mother_mname', 'mother_suffix',
+        'role', 'password', 'is_verified',
+        'related_with_third_degree',
+        'related_with_fourth_degree',
+        'related_with_fourth_degree_yes',
+        'is_guilty_administrative_offense',
+        'is_guilty_administrative_offense_yes',
+        'is_criminally_charge',
+        'is_criminally_charge_yes',
+        'date_filed',
+        'case_status',
+        'is_convicted',
+        'is_convicted_yes',
+        'is_separated',
+        'is_separated_yes_details',
+        'is_candidate_election',
+        'is_candiadte_election_yes',
+        'is_resigned',
+        'is_resigned_yes',
+        'is_immigrant',
+        'is_immigrant_yes',
+        'is_indigenous',
+        'is_indigenous_yes',
+        'is_disable',
+        'is_disable_id_no',
+        'is_solo_parent',
+        'is_solo_parent_yes',
     ];
 
     /**
@@ -47,24 +80,65 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
 
-    public function categories(){
-        return $this->hasMany(UserCategory::class, 'user_id', 'user_id')
-            ->with(['category']);
+
+    public function children(){
+        return $this->HasMany(Children::class, 'user_id', 'user_id');
     }
 
-    public function inline_categories(){
-        return $this->hasMany(UserCategory::class, 'user_id', 'user_id')
-            ->leftJoin('categories', 'categories.category_id', 'user_categories.category_id');
+    public function eligibilities(){
+        return $this->HasMany(CivilServiceEligibility::class, 'user_id', 'user_id');
     }
 
-    public function province(){
-        return $this->hasOne(Province::class, 'provCode', 'province');
+    public function work_experiences(){
+        return $this->HasMany(WorkExperience::class, 'user_id', 'user_id');
     }
 
-    public function city(){
-        return $this->hasOne(City::class, 'citymunCode', 'city');
+    public function educational_backgrounds(){
+        return $this->HasMany(EducationalBackground::class, 'user_id', 'user_id');
     }
-    public function barangay(){
-        return $this->hasOne(Barangay::class, 'brgyCode', 'barangay');
+
+    public function voluntary_works(){
+        return $this->HasMany(VoluntaryWork::class, 'user_id', 'user_id');
     }
+
+    public function learning_developments(){
+        return $this->HasMany(LearningDevelopment::class, 'user_id', 'user_id')
+            ->with(['certificates']);
+    }
+
+    public function other_informations(){
+        return $this->HasMany(OtherInformation::class, 'user_id', 'user_id');
+    }
+
+
+
+
+    //residential
+    public function residential_province(){
+        return $this->hasOne(Province::class, 'provCode', 'res_province');
+    }
+    public function residential_city(){
+        return $this->hasOne(City::class, 'citymunCode', 'res_city');
+    }
+    public function residential_barangay(){
+        return $this->hasOne(Barangay::class, 'brgyCode', 'res_barangay');
+    }
+    
+
+    //permanent
+    public function permanent_province(){
+        return $this->hasOne(Province::class, 'provCode', 'per_province');
+    }
+    public function permanent_city(){
+        return $this->hasOne(City::class, 'citymunCode', 'per_city');
+    }
+    public function permanent_barangay(){
+        return $this->hasOne(Barangay::class, 'brgyCode', 'per_barangay');
+    }
+
+
+
+
+
+
 }

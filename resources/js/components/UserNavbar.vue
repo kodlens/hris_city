@@ -1,50 +1,31 @@
 <template>
-    <b-navbar fixed-top>
+    <b-navbar class="is-dark">
         <template #brand>
             <b-navbar-item>
-                <img src="/img/trablogo.png" />
-                
+                <h1 class="title is-4" style="color: white;">HR LEARNING & DEV</h1>
             </b-navbar-item>
         </template>
 
         <template #start>
-            <!-- <b-navbar-item href="/">
-                Hunt Talent
-            </b-navbar-item>
-            <b-navbar-item href="/">
-                Hunt Job
-            </b-navbar-item>
 
-            <b-navbar-item href="/">
-                About Us
-            </b-navbar-item> -->
 
         </template>
 
         <template #end>
-            
-          
-            <b-navbar-item v-if="currentLogin && user.role == 'EMPLOYEE'" href="/">
-                Home
+           
+            <!-- <b-navbar-item href="/about">
+                ABOUT
+            </b-navbar-item> -->
+            <b-navbar-item href="/my-appointment" v-if="currentLogin">
+                MY APPOINTMENT
             </b-navbar-item>
-
-            <b-navbar-item v-if="currentLogin && user.role == 'EMPLOYER'" href="/employer/dashboard">
-                Home
-            </b-navbar-item>
-            
-            <b-navbar-item href="/employee/profile">
-                {{ showName }}
-            </b-navbar-item>
-
-            <b-navbar-item v-if="currentLogin && user.role == 'EMPLOYEE'" href="/employee/my-applications">
-                My Application
-            </b-navbar-item>
-            
-
             <b-navbar-item tag="div">
                 <div v-if="!currentLogin" class="buttons">
-                    <a class="button is-primary is-rounded" href="/login">
-                        <strong>Login</strong>
+                    <a class="button is-primary" href="/sign-up">
+                        <strong>Register</strong>
+                    </a>
+                    <a class="button is-success is-outlined" href="/login">
+                        Log in
                     </a>
                 </div>
                 <div v-else class="buttons">
@@ -52,7 +33,6 @@
                     </b-button>
                 </div>
             </b-navbar-item>
-            
         </template>
     </b-navbar>
 

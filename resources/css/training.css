@@ -1,0 +1,23 @@
+.cert-text{
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 25px;
+}
+
+.card-cert{
+    margin: 15px 10px;
+}
+
+.black-color{
+    color: black;
+}
+
+.dropdown-item{
+    color: black;
+    background-color: black;
+}
+
+.dropdown-item:hover{
+    background-color: rgb(56, 56, 56);
+}
+

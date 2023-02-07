@@ -31,8 +31,6 @@
             @yield('content')
         </div>
 
-        <footer-section></footer-section>
-
 
     </div>
 </body>

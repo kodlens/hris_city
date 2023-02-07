@@ -1,19 +1,8 @@
 @media print {
-    /*.myDivToPrint {*/
-    /*    background-color: white;*/
-    /*    height: 100%;*/
-    /*    width: 100%;*/
-    /*    position: fixed;*/
-    /*    top: 0;*/
-    /*    left: 0;*/
-    /*    margin: 0;*/
-    /*    padding: 15px;*/
-    /*    font-size: 14px;*/
-    /*    line-height: 18px;*/
-    /*}*/
 
-
-
+    .print-form{
+        margin: 0;
+    }
     .myDivToPrint{
         margin: 0;
         color: #000;
@@ -25,7 +14,12 @@
     .nprint{
         display: none;
     }
-    header, footer, aside, nav, form, iframe, .menu, .hero, .adslot {
+    header,
+    footer,
+    aside,
+    nav,
+    form,
+    iframe, .menu, .hero, .adslot {
         display: none;
     }
 
@@ -33,10 +27,13 @@
         display: none;
     }
 
-    .print-filter{
-        display: none;
-    }
+}
 
+
+.print-form{
+    width: 8.5in;
+    height: 13in;
+    margin: auto;
 }
 
 .debug{
@@ -49,43 +46,7 @@
 
 
 
-.printarea{
-    width: 816px;
-    margin: 30px auto 0;
-}
-
-.report-head{
-    text-align: center;
-    font-weight: bold;
-    margin: 5px 0;
-}
-.report-body{
-
-}
 
 
-.report-table{
-    margin: auto;
-    border: 1px solid red;
-    font-size: .8em;
-}
-.report-table > tr > th{
-    padding: 10px;
-}
-
-.report-table > tr{
-    border: 1px solid black;
-}
-
-.report-table > tr > td{
-    padding: 10px;
-}
-
-
-.print-filter{
-    width: 816px;
-    background-color: white;
-    margin: 25px auto;
-}
 
 

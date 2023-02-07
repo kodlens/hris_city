@@ -1,13 +1,8 @@
 // Fonts
 //@import url('https://fonts.googleapis.com/css?family=Tangerine');
-//@import url(https://fonts.googleapis.com/css?family=Product+Sans:300,400,500,700,300i,400i,500i,700i&display=swap);
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
-@import 'animate.css';
 // Variables
 @import 'variables';
 @import '~@mdi/font/css/materialdesignicons.css';
-
-
 //ref website -> https://materialdesignicons.com/
 //npm i @mdi/font
 // Bootstrap
@@ -16,41 +11,12 @@
 //@import '~font-awesome/css/font-awesome.css';
 //npm i font-awesome
 //https://fontawesome.com/v4.7.0/
-html body {
-    //font-family: 'Amaranth', sans-serif;
-    //font-family: Product Sans!important;
-    font-family: 'Open Sans', sans-serif;
-    background: white;
-}
-
-.navbar {
-    border-bottom: 0.5px solid green;
-    box-shadow: 0px 1px 10px rgb(224, 224, 224);
-}
-
-//own style
-.w-tag-container {
-    display: flex;
-}
-
-.w-tag-container>div {
-    margin: 10px;
-}
-
-.tag-category {
-    border-radius: 10px;
-    font-weight: bold;
-    font-size: .8em;
-    padding: 15px;
-    background-color: rgb(255, 217, 186);
-}
-
-.tag-jobtype {
-    border-radius: 10px;
-    font-weight: bold;
-    font-size: .8em;
-    padding: 15px;
-    background-color: rgb(181, 204, 255);
+html,
+body {
+    background: #f0f0f0;
+    // width: 100%;
+    // height: 100%;
+    min-height: 100vh;
 }
 
 @media screen and (max-width: 1023px) {
@@ -126,19 +92,33 @@ html body {
 }
 
 .box {
-    border: 1px solid rgb(228, 228, 228);
+    border-top: 5px solid blue;
 }
 
-.box-header {
-    padding: 25px;
+.box-heading {
+    font-weight: bold;
+    font-size: 1.4em;
+    margin: 15px auto;
+    text-align: center;
 }
 
-.top-border-green {
-    border-top: 3px solid rgb(22, 128, 8);
+#Spots {
+    polygon,
+    path {
+        -webkit-transition: fill .25s;
+        transition: fill .25s;
+    }
+    polygon:hover,
+    polygon:active,
+    path:hover,
+    path:active {
+        fill: #dddddd !important;
+    }
 }
 
-.debug {
-    border: 1px solid red;
+.line {
+    height: 10px;
+    background-color: #3490dc;
 }
 
 //@import '~animate.css/animate';
@@ -147,9 +127,7 @@ html body {
 @import "~bulma/sass/utilities/_all";
 //
 ////Set your colors
-$primary: rgb(4,
-109,
-30);
+$primary: #3490dc;
 $primary-light: findLightColor($primary);
 $primary-dark: findDarkColor($primary);
 $primary-invert: findColorInvert($primary);
@@ -159,8 +137,7 @@ $twitter-invert: findColorInvert($twitter);
 $custom-colors: null !default;
 $custom-shades: null !default;
 // Setup $colors to use as bulma classes (e.g. 'is-twitter')
-$colors: mergeColorMaps( ( "white": ( $white, $black, ), "black": ( $black, $white, ), "light": ( $light, $light-invert, ), "dark": ( $dark, $dark-invert, ), "primary": ( $primary, $primary-invert, $primary-light, $primary-dark, ), "link": ( $link, $link-invert, $link-light, $link-dark, ), "info": ( $info, $info-invert, $info-light, $info-dark, ), "success": ( $success, $success-invert, $success-light, $success-dark, ), "warning": ( $warning, $warning-invert, $warning-light, $warning-dark, ), "danger": ( $danger, $danger-invert, $danger-light, $danger-dark, ), ),
-$custom-colors);
+$colors: mergeColorMaps( ( "white": ( $white, $black, ), "black": ( $black, $white, ), "light": ( $light, $light-invert, ), "dark": ( $dark, $dark-invert, ), "primary": ( $primary, $primary-invert, $primary-light, $primary-dark, ), "link": ( $link, $link-invert, $link-light, $link-dark, ), "info": ( $info, $info-invert, $info-light, $info-dark, ), "success": ( $success, $success-invert, $success-light, $success-dark, ), "warning": ( $warning, $warning-invert, $warning-light, $warning-dark, ), "danger": ( $danger, $danger-invert, $danger-light, $danger-dark, ), ), $custom-colors);
 //// Links
 $link: $primary;
 $link-invert: $primary-invert;
@@ -168,11 +145,6 @@ $link-focus-border: $primary;
 //navbar
 $navbar-height: 5rem;
 $navbar-item-img-max-height: 4rem;
-//$input-background-color: rgb(217, 255, 230);
-$input-radius: 0;
-
-$rate-color-active: rgb(113, 224, 113);
-
 //$navbar-burger-color: white;
 //$navbar-item-color: #ffffff;
 //$navbar-item-hover-color: #a7f1a7;
@@ -196,6 +168,86 @@ $rate-color-active: rgb(113, 224, 113);
 .sidebar-content {
     background-color: #2a2a2a;
 }
+
+h2 {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #000;
+    line-height: 0.1em;
+    margin: 30px 0 40px 0;
+}
+
+h2 span {
+    background: #fff;
+    padding: 0 10px;
+}
+
+.divider-gray {
+    height: 2px;
+    background-color: gray;
+    margin: 5px 0 10px 0;
+}
+
+.pds {
+    display: none;
+}
+
+@media print {
+    header,
+    footer,
+    aside,
+    nav,
+    form,
+    iframe,
+    .menu,
+    .hero,
+    .adslot,
+    .no-print {
+        display: none;
+    }
+    .buttons {
+        display: none;
+    }
+    /* // if print display none elements */
+    html body {
+        background-color: white;
+    }
+    .footer-container {
+        display: none;
+    }
+    .pds {
+        display: block;
+    }
+
+    .text-title{
+        background-color: gray;
+        font-weight: bold;
+        color: white;
+        padding: 5px;
+        font-style: italic;
+    }
+    .w-table {
+        margin: auto;
+        width: 800px;
+    }
+
+    .w-table > table > tr > td {
+        width: 300px;
+        border: 1px solid rgb(179, 179, 179);
+        padding: 5px 5px 5px 3px;
+    }
+
+    
+    
+    .w-td-150 {
+        width: 200px !important;
+    }
+}
+
+@page {
+    size: 8.5in 13in;
+    
+    }
 
 @import "~buefy/src/scss/buefy";
 // Import only what you need from Bulma

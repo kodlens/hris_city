@@ -1,17 +1,19 @@
 <template>
     <div>
-        <div class="home-container">
-            
-            <div class="box box-width">
-                <div class="w-head-title">
-                    WELCOME ADMINISTRATOR
-                </div>
-                <div class="w-content">
-                    {{ info.user }}
-                </div>
+        <div class="section">
+            <div class="columns is-centered">
+                
             </div>
 
         </div>
+
+        <!-- <div class="section">
+            <div class="buttons">
+                <b-button type="is-info" @click="sendSMS" label="Send"></b-button>
+            </div>
+        </div> -->
+
+
     </div>
 </template>
 
@@ -25,30 +27,32 @@ export default {
 	},
 
 	methods:{
+        getDashboardInfo(){
+            axios.get('/get-dashboard-info').then(res=>{
+                this.info = res.data;
+            })
+        },
 
-
+        sendSMS: function(){
+            axios.post('http://192.168.88.231:1688/services/api/messaging?Message=smaple&To=09167789585&Slot=1',{},{
+                headers: {
+                    'Content-Type': 'text/plain' //void COR error
+                }
+            }).then(res=>{
+                console.log(res.data);
+            })
+        }
 	},
 
     mounted() {
-        
+        this.getDashboardInfo();
     }
 }
 </script>
 
 <style scoped>
-
-    .box-width{
-        max-width: 600px;
-    }
-    .home-container{
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
     .w-head-title{
         font-weight: bold;
-        text-align: center;
     }
     .w-content{
         text-align: center;

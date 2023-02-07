@@ -1,4 +1,4 @@
-@extends('layouts.admin-layout')
+@extends('layouts.app')
 
 @section('content')
     <services-page></services-page>

@@ -13,12 +13,11 @@ window.axios = require('axios');
 import Buefy from 'buefy'
 // import 'buefy/dist/buefy.css'
 
-// import { PdfViewerPlugin } from '@syncfusion/ej2-vue-pdfviewer';
-
 //QR Scanner
-// import VueQrcodeReader from "vue-qrcode-reader";
+//import VueQrcodeReader from "vue-qrcode-reader";
 //for QR CODE Generation
-// import VueQrcode from '@chenfengyuan/vue-qrcode';
+//import VueQrcode from '@chenfengyuan/vue-qrcode';
+
 
 
 
@@ -35,13 +34,18 @@ files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(
 
 //Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
-//Vue.component('navbar-component', require('./components/Administrator/NavbarComponent.vue').default);
+//Vue.component('navbar-component', require('./components/Administrator/AdminNavbarComponent.vue').default);
 //Vue.component('home-page', require('./components/HomePage.vue').default);
 //Vue.component('register-components', require('./components/SignupComponent.vue').default);
 
 
 //USER
 //Vue.component('user-page', require('./components/Administrator/User/UserPage.vue').default);
+
+
+
+
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -50,10 +54,7 @@ files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(
  */
 
 
-Vue.use(Buefy);
-
-// Vue.use(PdfViewerPlugin);
-
+Vue.use(Buefy)
 
 //Vue.use(VueQrcodeReader); //https://gruhn.github.io/vue-qrcode-reader/demos/CustomTracking.html
 //Vue.component(VueQrcode.name, VueQrcode);
@@ -67,27 +68,6 @@ Vue.filter('formatTime', function(value) {
     timeString = h + timeString.substr(2, 3) + ampm;
     return timeString;
 });
-
-Vue.filter('formatDateTime', function(value) {
-    let ndate = new Date(value);
-
-    var timeString = ndate.toTimeString();
-    var H = +timeString.substr(0, 2);
-    var h = (H % 12) || 12;
-    var ampm = H < 12 ? " AM" : " PM";
-    timeString = h + timeString.substr(2, 3) + ampm;
-    return ndate.toDateString()+ ' ' + timeString;
-});
-
-
-
-import VueQuillEditor from 'vue-quill-editor'
-
-import 'quill/dist/quill.core.css' // import styles
-import 'quill/dist/quill.snow.css' // for snow theme
-import 'quill/dist/quill.bubble.css' // for bubble theme
-
-Vue.use(VueQuillEditor, /* { default global options } */)
 
 
 const app = new Vue({

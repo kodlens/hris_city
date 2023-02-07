@@ -18,86 +18,50 @@ class UserSeeder extends Seeder
         $data = [
             [
                 'username' => 'admin',
-                'lname' => 'ABELLA',
-                'fname' => 'LEDA GRACE',
+                'lname' => 'VARGAS',
+                'fname' => 'CHARLES',
                 'mname' => 'P',
                 'sex' => 'MALE',
-                'province' => 'MISAMIS OCCIDENTAL',
-                'city' => 'TANGUB CITY',
-                'barangay' => 'CANIANGAN',
-                'street' => 'P-6',
+
+                'res_province' => 'MISAMIS OCCIDENTAL',
+                'res_city' => 'TANGUB CITY',
+                'res_barangay' => 'CANIANGAN',
+                'res_street' => 'P-6',
+
+                'per_province' => 'MISAMIS OCCIDENTAL',
+                'per_city' => 'TANGUB CITY',
+                'per_barangay' => 'CANIANGAN',
+                'per_street' => 'P-6',
+
                 'email' => 'admin@dev.com',
                 'contact_no' => '09167789585',
                 'role' => 'ADMINISTRATOR',
-                'province' => 1042,
-                'city' => 104215,
-                'barangay' => 104215025,
-                'street' => 'p-bougainvilla',
                 'password' => Hash::make('a')
             ],
 
-            //client
+            //FACULTY
             [
-                'username' => 'mon',
-                'lname' => 'LUMAPAC',
-                'fname' => 'RAMONITO',
+                'username' => 'charles',
+                'lname' => 'VARGAS',
+                'fname' => 'CHARLES',
                 'mname' => 'P',
                 'sex' => 'MALE',
-                'province' => 'MISAMIS OCCIDENTAL',
-                'city' => 'TANGUB CITY',
-                'barangay' => 'CANIANGAN',
-                'street' => 'P-6',
-                'email' => 'neri@dev.com',
-                'contact_no' => '09167789585',
-                'role' => 'EMPLOYEE',
-                'province' => 1042,
-                'city' => 104215,
-                'barangay' => 104215025,
-                'street' => 'p-bougainvilla',
+
+                'res_province' => 'MISAMIS OCCIDENTAL',
+                'res_city' => 'TANGUB CITY',
+                'res_barangay' => 'CANIANGAN',
+                'res_street' => 'P-6',
+
+                'per_province' => 'MISAMIS OCCIDENTAL',
+                'per_city' => 'TANGUB CITY',
+                'per_barangay' => 'CANIANGAN',
+                'per_street' => 'P-6',
+
+                'email' => 'charles@dev.com',
+                'contact_no' => '09683014598',
+                'role' => 'FACULTY',
                 'password' => Hash::make('a')
             ],
-
-            [
-                'username' => 'emp01',
-                'lname' => 'SACAN',
-                'fname' => 'NIMROD',
-                'mname' => 'P',
-                'sex' => 'MALE',
-                'province' => 'MISAMIS OCCIDENTAL',
-                'city' => 'TANGUB CITY',
-                'barangay' => 'CANIANGAN',
-                'street' => 'P-6',
-                'email' => 'sacan@dev.com',
-                'contact_no' => '09167789585',
-                'role' => 'EMPLOYER',
-                'province' => 1042,
-                'city' => 104215,
-                'barangay' => 104215025,
-                'street' => 'p-bougainvilla',
-                'password' => Hash::make('a')
-            ],
-
-            [
-                'username' => 'leda',
-                'lname' => 'ABELLA',
-                'fname' => 'LEDA GRACE',
-                'mname' => '',
-                'sex' => 'FEMALE',
-                'province' => 'MISAMIS OCCIDENTAL',
-                'city' => 'TANGUB CITY',
-                'barangay' => 'CANIANGAN',
-                'street' => 'P-6',
-                'email' => 'leda@dev.com',
-                'contact_no' => '1234654654',
-                'role' => 'EMPLOYER',
-                'province' => 1042,
-                'city' => 104215,
-                'barangay' => 104215025,
-                'street' => 'p-bougainvilla',
-                'password' => Hash::make('a')
-            ],
-
-
         ];
 
         \App\Models\User::insertOrIgnore($data);

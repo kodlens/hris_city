@@ -1,36 +1,50 @@
 <template>
     <div>
+        <div class="mynav">
+            <div class="mynav-brand">{{ showName }}</div>
+            <div class="burger-button" @click="open = true">
+                <div class="burger-div"></div>
+                <div class="burger-div"></div>
+                <div class="burger-div"></div>
+            </div>
+        </div>
 
-        <b-navbar>
-            <template #brand>
-                <b-navbar-item>
-                    <img src="/img/trablogo.png" />
-                </b-navbar-item>
-               
-            </template>
+        <section>
+            <b-sidebar
+                type="is-light"
+                :fullheight="fullheight"
+                :fullwidth="fullwidth"
+                :overlay="overlay"
+                :right="right"
+                v-model="open">
+                <div class="p-4">
+                    <h3 class="title is-4">{{ showName }} PANEL</h3>
+                    <b-menu>
+                        <b-menu-list>
+                            <b-menu-item label="Home" icon="home" tag="a" href="/"></b-menu-item>
+                        </b-menu-list>
 
-            <template #start>
-            </template>
+                        <b-menu-list label="Menu">
+                            <b-menu-item icon="information-outline" label="Dashboard" tag="a" href="/dashboard-user"></b-menu-item>
+                        </b-menu-list>
 
-            <template #end>
-                <b-navbar-item href="/">
-                    Home
-                </b-navbar-item>
+                        <b-menu-list>
+                            <b-menu-item label="My Apointment" icon="calendar" tag="a" href="/my-appointment"></b-menu-item>
+                        </b-menu-list>
 
-                <b-navbar-item href="/employee/profile">
-                    {{ showName }}
-                </b-navbar-item>
+                        <b-menu-list>
+                            <b-menu-item label="My Profile" icon="account" tag="a" href="/my-profile"></b-menu-item>
+                        </b-menu-list>
 
-                <b-navbar-item tag="div">
-                    <div class="buttons">
-                        <b-button label="LOGOUT" icon-left="logout" @click="logout">
-                        </b-button>
-                    </div>
-                </b-navbar-item>
-                
-            </template>
-        </b-navbar>
 
+                        <b-menu-list label="Actions">
+                            <b-menu-item @click="logout" label="Logout"></b-menu-item>
+                        </b-menu-list>
+                    </b-menu>
+                </div>
+            </b-sidebar>
+
+        </section>
     </div>
 
 </template>
@@ -39,6 +53,12 @@
 export default {
     data(){
         return{
+            open: false,
+            overlay: true,
+            fullheight: true,
+            fullwidth: false,
+            right: true,
+
             user: null,
         }
     },
@@ -50,7 +70,7 @@ export default {
         },
 
         loadUser(){
-            axios.get('/get-logged-user').then(res=>{
+            axios.get('/get-user').then(res=>{
                 this.user = res.data;
             })
         }

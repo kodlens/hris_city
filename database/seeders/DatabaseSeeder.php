@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\AppointmentType;
+use App\Models\Citizenship;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,8 +17,10 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call([
+            CitizenshipSeeder::class,
+            CivilStatusSeeder::class,
             UserSeeder::class,
-          
+
         ]);
     }
 }

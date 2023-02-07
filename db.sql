@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v12.14 (64 bit)
-MySQL - 10.4.24-MariaDB : Database - trabahunt
+MySQL - 10.4.24-MariaDB : Database - learning_dev
 *********************************************************************
 */
 
@@ -12,36 +12,9 @@ MySQL - 10.4.24-MariaDB : Database - trabahunt
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`trabahunt` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`hris` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 
-USE `trabahunt`;
-
-/*Table structure for table `applicants` */
-
-DROP TABLE IF EXISTS `applicants`;
-
-CREATE TABLE `applicants` (
-  `applicant_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `pitch` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `job_post_id` bigint(20) unsigned NOT NULL,
-  `user_id` bigint(20) unsigned NOT NULL,
-  `resume_path` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `date_hired` date DEFAULT NULL,
-  `is_accepted` tinyint(4) NOT NULL DEFAULT 0,
-  `is_end_contract` tinyint(4) DEFAULT 0,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`applicant_id`),
-  KEY `applicants_job_post_id_foreign` (`job_post_id`),
-  KEY `applicants_user_id_foreign` (`user_id`),
-  CONSTRAINT `applicants_job_post_id_foreign` FOREIGN KEY (`job_post_id`) REFERENCES `job_posts` (`job_post_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `applicants_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-/*Data for the table `applicants` */
-
-insert  into `applicants`(`applicant_id`,`pitch`,`job_post_id`,`user_id`,`resume_path`,`date_hired`,`is_accepted`,`is_end_contract`,`created_at`,`updated_at`) values 
-(1,'apply ko malooi.. 30 akong anak',3,2,'49FFf3CiU9q0n9CgbTElflC68c7WGqxZUCAIJYjb.pdf','2023-01-07',1,1,'2022-12-27 11:16:12','2023-01-07 19:16:50');
+USE `hris`;
 
 /*Table structure for table `barangays` */
 
@@ -42094,34 +42067,56 @@ insert  into `barangays`(`id`,`brgyCode`,`brgyRef`,`brgyDesc`,`regCode`,`provCod
 (42028,'168507008',NULL,'San Vicente (Pob.)','16','1685','168507',1,NULL,NULL),
 (42029,'168507009',NULL,'Santa Cruz (Pob.)','16','1685','168507',1,NULL,NULL);
 
-/*Table structure for table `categories` */
+/*Table structure for table `certificates` */
 
-DROP TABLE IF EXISTS `categories`;
+DROP TABLE IF EXISTS `certificates`;
 
-CREATE TABLE `categories` (
-  `category_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `category` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+CREATE TABLE `certificates` (
+  `certificate_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `learning_dev_id` bigint(20) unsigned NOT NULL,
+  `certificate` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`certificate_id`),
+  KEY `learning_dev_id` (`learning_dev_id`),
+  CONSTRAINT `certificates_ibfk_1` FOREIGN KEY (`learning_dev_id`) REFERENCES `learning_developments` (`learning_dev_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4;
+
+/*Data for the table `certificates` */
+
+insert  into `certificates`(`certificate_id`,`learning_dev_id`,`certificate`,`created_at`,`updated_at`) values 
+(20,1,'bjcBru1gSoqFr2iJcaDeOH7NZcPkGSkrOGu8oFaE.jpg','2023-01-03 20:33:42','2023-01-03 20:33:42'),
+(23,11,'kotPupRrKfbh3HzhXYhZ6Bda5v5WmkqqOX4jyfBq.png','2023-01-03 20:34:21','2023-01-03 20:34:21'),
+(24,14,'pYIH9GePX2Vz56s5gcn9XfHB4BXiQILKyd1JI2ps.jpg','2023-01-03 20:35:25','2023-01-03 20:35:25'),
+(25,1,'IfqHQILrpW0fIzLICB465N2XwnNGUQSqZB8dlkV1.jpg','2023-01-06 10:17:05','2023-01-06 10:17:05'),
+(26,1,'z3G7TS8Ijmn8Q1aHkR2v5jddchG6QsZ7caeRDqj7.jpg','2023-01-06 10:17:12','2023-01-06 10:17:12'),
+(27,15,'UDp7QToxIUbG5rbPeUgtG7cTZGmmLyDHce4KUSCM.png','2023-01-13 04:00:47','2023-01-13 04:00:47'),
+(28,16,'Cwhy1VM2jCcZk3gSu2V3E5z8PWjSCtkPqg3tvzwv.jpg','2023-01-13 04:02:11','2023-01-13 04:02:11'),
+(29,12,'uHjFXGzxdeakLxQhauQvQxd7Z4E8uvpQL8krMSVC.png','2023-01-16 09:07:32','2023-01-16 09:07:32'),
+(31,17,'mMhHnCLVSN16lTc2ZEPiaAvqdhqltozRScM1eCaq.jpg','2023-01-16 09:20:24','2023-01-16 09:20:24');
+
+/*Table structure for table `children` */
+
+DROP TABLE IF EXISTS `children`;
+
+CREATE TABLE `children` (
+  `child_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) unsigned NOT NULL,
+  `fullname` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `child_bdate` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  PRIMARY KEY (`child_id`),
+  KEY `children_user_id_foreign` (`user_id`),
+  CONSTRAINT `children_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-/*Data for the table `categories` */
+/*Data for the table `children` */
 
-insert  into `categories`(`category_id`,`category`,`created_at`,`updated_at`) values 
-(1,'SALES CLERK',NULL,NULL),
-(2,'CONSTRUCTION WORKERS',NULL,NULL),
-(3,'DELIVERY SERVICES',NULL,NULL),
-(4,'HOUSE WORKERS',NULL,NULL),
-(5,'DRIVERS',NULL,NULL),
-(6,'MECHANIC',NULL,NULL),
-(7,'SERVICE CREW',NULL,NULL),
-(8,'OFFICE CLERK',NULL,NULL),
-(9,'FREELANCER',NULL,NULL),
-(10,'UTILITY WORKERS',NULL,NULL),
-(11,'CUSTOMER SERVICE',NULL,NULL),
-(12,'FARMERS',NULL,NULL),
-(13,'OTHERS',NULL,NULL);
+insert  into `children`(`child_id`,`user_id`,`fullname`,`child_bdate`,`created_at`,`updated_at`) values 
+(3,2,'ETIENNE WAYNE','2022-11-17','2022-11-30 11:18:14','2022-11-30 11:18:43'),
+(5,22,'DANICA MAE P. AGUSTINE','2000-01-06','2023-01-13 03:43:42','2023-01-13 03:43:42'),
+(6,22,'EVELYN JANE P. AGUSTINE','2006-06-02','2023-01-13 03:43:42','2023-01-13 03:43:42');
 
 /*Table structure for table `cities` */
 
@@ -43791,125 +43786,128 @@ insert  into `cities`(`id`,`psgcCode`,`citymunDesc`,`regDesc`,`provCode`,`citymu
 (1646,'168506000','SAN JOSE (Capital)','16','1685','168506',NULL,1),
 (1647,'168507000','TUBAJON','16','1685','168507',NULL,1);
 
-/*Table structure for table `companies` */
+/*Table structure for table `citizenships` */
 
-DROP TABLE IF EXISTS `companies`;
+DROP TABLE IF EXISTS `citizenships`;
 
-CREATE TABLE `companies` (
-  `company_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) unsigned NOT NULL,
-  `company` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `trade_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `accronym` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `main_or_branch` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `employer_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `overview` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `company_size` int(11) DEFAULT NULL,
-  `total_work_force` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `website` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `industry` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `benefits_others` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `tin` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `owner` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `contact_person` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `contact_position` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone_contact` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fb_contact` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `twitter_contact` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `insta_contact` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `viber_contact` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `whatsapp_contact` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `province` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `barangay` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `street` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `company_logo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+CREATE TABLE `citizenships` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `citizenship` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`company_id`),
-  KEY `companies_user_id_foreign` (`user_id`),
-  CONSTRAINT `companies_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-/*Data for the table `companies` */
+/*Data for the table `citizenships` */
 
-insert  into `companies`(`company_id`,`user_id`,`company`,`trade_name`,`accronym`,`main_or_branch`,`employer_type`,`overview`,`company_size`,`total_work_force`,`website`,`industry`,`benefits_others`,`tin`,`owner`,`contact_person`,`contact_position`,`phone_contact`,`fb_contact`,`twitter_contact`,`insta_contact`,`viber_contact`,`whatsapp_contact`,`email`,`province`,`city`,`barangay`,`street`,`company_logo`,`created_at`,`updated_at`) values 
-(1,4,'LEDA LAUNDRY SHOP','',NULL,NULL,'PUBLIC - National Governement Agency','Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus iusto repudiandae delectus. Esse officiis aspernatur, excepturi quaerat rem laboriosam ipsam?',10,'Micro (1-9)',NULL,'LAUNDRY','SSS, PAGIBIG','124','LEDA GRACE','','','091654675224',NULL,NULL,NULL,NULL,NULL,'employer@sample.com','1042','104215','104215025','p-bougainvilla',NULL,NULL,'2023-01-11 09:45:45');
+insert  into `citizenships`(`id`,`citizenship`,`created_at`,`updated_at`) values 
+(1,'FILIPINO',NULL,NULL),
+(2,'AMERICAN',NULL,NULL),
+(3,'PALESTINE',NULL,NULL),
+(4,'INDIAN',NULL,NULL),
+(5,'CHINIESE',NULL,NULL),
+(6,'JAPANESE',NULL,NULL);
 
-/*Table structure for table `company_ratings` */
+/*Table structure for table `civil_service_eligibilities` */
 
-DROP TABLE IF EXISTS `company_ratings`;
+DROP TABLE IF EXISTS `civil_service_eligibilities`;
 
-CREATE TABLE `company_ratings` (
-  `company_rating_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `company_id` bigint(20) unsigned NOT NULL,
+CREATE TABLE `civil_service_eligibilities` (
+  `cse_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` bigint(20) unsigned NOT NULL,
-  `job_post_id` bigint(20) unsigned NOT NULL,
-  `rating` double NOT NULL DEFAULT 0,
+  `career_exam` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `rating` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `date_exam` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `place_exam` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `license_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `license_validity` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`company_rating_id`),
-  KEY `company_ratings_company_id_foreign` (`company_id`),
-  KEY `company_ratings_user_id_foreign` (`user_id`),
-  KEY `company_ratings_job_post_id_foreign` (`job_post_id`),
-  CONSTRAINT `company_ratings_company_id_foreign` FOREIGN KEY (`company_id`) REFERENCES `companies` (`company_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `company_ratings_job_post_id_foreign` FOREIGN KEY (`job_post_id`) REFERENCES `job_posts` (`job_post_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `company_ratings_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  PRIMARY KEY (`cse_id`),
+  KEY `civil_service_eligibities_user_id_foreign` (`user_id`),
+  CONSTRAINT `civil_service_eligibities_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-/*Data for the table `company_ratings` */
+/*Data for the table `civil_service_eligibilities` */
 
-/*Table structure for table `employee_ratings` */
+insert  into `civil_service_eligibilities`(`cse_id`,`user_id`,`career_exam`,`rating`,`date_exam`,`place_exam`,`license_no`,`license_validity`,`created_at`,`updated_at`) values 
+(1,2,'EDPSE','80','2021-11-01','CAGAYAN DE ORO','1234','12/2024','2022-11-30 13:47:53','2022-11-30 13:50:43'),
+(3,22,'CAREER SERVICE EXAMINATION, PEN AND PAPER TEST (CSE-PPT) FOR PROFESSIONAL AND SUBPROFESSIONAL LEVELS','0.31','2023-03-26','MANILA CITY','7779-7777-8888','driver\'s license','2023-01-13 03:51:31','2023-01-13 03:51:31');
 
-DROP TABLE IF EXISTS `employee_ratings`;
+/*Table structure for table `civil_statuses` */
 
-CREATE TABLE `employee_ratings` (
-  `employee_rating_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `applicant_id` bigint(20) unsigned NOT NULL,
-  `user_id` bigint(20) unsigned NOT NULL,
-  `job_post_id` bigint(20) unsigned NOT NULL,
-  `rating` double NOT NULL DEFAULT 0,
+DROP TABLE IF EXISTS `civil_statuses`;
+
+CREATE TABLE `civil_statuses` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `civil_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`employee_rating_id`),
-  KEY `employee_ratings_applicant_id_foreign` (`applicant_id`),
-  KEY `employee_ratings_user_id_foreign` (`user_id`),
-  KEY `employee_ratings_job_post_id_foreign` (`job_post_id`),
-  CONSTRAINT `employee_ratings_applicant_id_foreign` FOREIGN KEY (`applicant_id`) REFERENCES `applicants` (`applicant_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `employee_ratings_job_post_id_foreign` FOREIGN KEY (`job_post_id`) REFERENCES `job_posts` (`job_post_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `employee_ratings_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-/*Data for the table `employee_ratings` */
+/*Data for the table `civil_statuses` */
 
-insert  into `employee_ratings`(`employee_rating_id`,`applicant_id`,`user_id`,`job_post_id`,`rating`,`created_at`,`updated_at`) values 
-(1,1,2,3,4,'2023-01-07 19:17:02','2023-01-07 19:17:02');
+insert  into `civil_statuses`(`id`,`civil_status`,`created_at`,`updated_at`) values 
+(1,'SINGLE',NULL,NULL),
+(2,'MARRIED',NULL,NULL),
+(3,'WIDOWED',NULL,NULL),
+(4,'DIVORCED',NULL,NULL),
+(5,'SEPARATED',NULL,NULL);
 
-/*Table structure for table `employer_types` */
+/*Table structure for table `educational_backgrounds` */
 
-DROP TABLE IF EXISTS `employer_types`;
+DROP TABLE IF EXISTS `educational_backgrounds`;
 
-CREATE TABLE `employer_types` (
-  `employer_type_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `public_private` varchar(255) DEFAULT NULL,
-  `employer_type` varchar(255) DEFAULT NULL,
+CREATE TABLE `educational_backgrounds` (
+  `ed_bg_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) unsigned NOT NULL,
+  `level` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name_of_school` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `degree` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `period_att_from` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `period_att_to` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `highest_level_unit` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `year_graduated` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `scholarship` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`ed_bg_id`),
+  KEY `educational_backgrounds_user_id_foreign` (`user_id`),
+  CONSTRAINT `educational_backgrounds_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `educational_backgrounds` */
+
+insert  into `educational_backgrounds`(`ed_bg_id`,`user_id`,`level`,`name_of_school`,`degree`,`period_att_from`,`period_att_to`,`highest_level_unit`,`year_graduated`,`scholarship`,`created_at`,`updated_at`) values 
+(2,2,'ELEMENTARY','BAROY CENTRAL ELEM SCHOOL','PRIMARY','1996','2002','','2002','','2022-11-30 16:22:18','2022-11-30 16:22:18'),
+(4,22,'COLLEGE','UNIVERSITY OF THE PHILIPPINES DILIMAN','GRADUATE DEGREES','2020','2023','25','2023','DOST-SEI UNDERGRADUATE SCHOLARSHIP PROGRAM','2023-01-13 03:43:42','2023-01-13 03:43:42');
+
+/*Table structure for table `faculty_participants` */
+
+DROP TABLE IF EXISTS `faculty_participants`;
+
+CREATE TABLE `faculty_participants` (
+  `faculty_participant_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `seminar_post_id` bigint(20) unsigned NOT NULL,
+  `teacher_id` bigint(20) unsigned NOT NULL,
+  `lname` varchar(255) DEFAULT NULL,
+  `fname` varchar(255) DEFAULT NULL,
+  `mname` varchar(255) DEFAULT NULL,
+  `sex` varchar(255) DEFAULT NULL,
+  `specialization` varchar(255) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `remarks` varchar(255) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
-  `update_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`employer_type_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`faculty_participant_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
-/*Data for the table `employer_types` */
+/*Data for the table `faculty_participants` */
 
-insert  into `employer_types`(`employer_type_id`,`public_private`,`employer_type`,`created_at`,`update_at`) values 
-(1,'PUBLIC','National Governement Agency',NULL,NULL),
-(2,'PUBLIC','Local Government Unit',NULL,NULL),
-(3,'PUBLIC','Government-owned and Controlled Corporation',NULL,NULL),
-(4,'PUBLIC','State/Local University or College',NULL,NULL),
-(5,'PRIVATE','Direct Hire',NULL,NULL),
-(6,'PRIVATE','Local Recruitment Agency',NULL,NULL),
-(7,'PRIVATE','Overseas Recruitment Agency',NULL,NULL),
-(8,'PRIVATE','D.O. 174',NULL,NULL);
+insert  into `faculty_participants`(`faculty_participant_id`,`seminar_post_id`,`teacher_id`,`lname`,`fname`,`mname`,`sex`,`specialization`,`title`,`remarks`,`created_at`,`updated_at`) values 
+(2,10,2,'VARGAS','CHARLES','P','MALE','ARALIN PANLIPUNAN','Introduction to SEL',NULL,'2023-01-16 10:42:33','2023-01-16 10:42:33'),
+(3,15,2,'VARGAS','CHARLES','P','MALE','TLE','Libero qui neque ali','REQUEST','2023-01-16 19:15:23','2023-01-16 19:15:23');
 
 /*Table structure for table `failed_jobs` */
 
@@ -43929,104 +43927,64 @@ CREATE TABLE `failed_jobs` (
 
 /*Data for the table `failed_jobs` */
 
-/*Table structure for table `hires` */
+/*Table structure for table `learning_development_types` */
 
-DROP TABLE IF EXISTS `hires`;
+DROP TABLE IF EXISTS `learning_development_types`;
 
-CREATE TABLE `hires` (
-  `hire_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `jobseeker_id` bigint(20) unsigned NOT NULL,
-  `employer_id` bigint(20) unsigned NOT NULL,
+CREATE TABLE `learning_development_types` (
+  `ld_type_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `ld_type` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`ld_type_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
+
+/*Data for the table `learning_development_types` */
+
+insert  into `learning_development_types`(`ld_type_id`,`ld_type`,`created_at`,`updated_at`) values 
+(1,'TECHNICAL',NULL,NULL),
+(2,'MANEGERIAL',NULL,NULL),
+(3,'TRAININGS',NULL,NULL),
+(4,'SUPERVISORY',NULL,NULL),
+(5,'FOUNDATION',NULL,NULL),
+(6,'CURRICULUM',NULL,NULL),
+(9,'CHARLES','2023-01-16 09:08:58','2023-01-16 09:08:58');
+
+/*Table structure for table `learning_developments` */
+
+DROP TABLE IF EXISTS `learning_developments`;
+
+CREATE TABLE `learning_developments` (
+  `learning_dev_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) unsigned NOT NULL,
+  `title_learning_dev` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `date_from` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `date_to` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `no_hours` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `type_ld` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sponsored_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `attach_path` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ratings` double DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`hire_id`),
-  KEY `hires_jobseeker_id_foreign` (`jobseeker_id`),
-  KEY `hires_employer_id_foreign` (`employer_id`),
-  CONSTRAINT `hires_employer_id_foreign` FOREIGN KEY (`employer_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `hires_jobseeker_id_foreign` FOREIGN KEY (`jobseeker_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  PRIMARY KEY (`learning_dev_id`),
+  KEY `learning_developments_user_id_foreign` (`user_id`),
+  CONSTRAINT `learning_developments_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-/*Data for the table `hires` */
+/*Data for the table `learning_developments` */
 
-/*Table structure for table `job_post_skills` */
-
-DROP TABLE IF EXISTS `job_post_skills`;
-
-CREATE TABLE `job_post_skills` (
-  `job_post_skill_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `job_post_id` bigint(20) unsigned DEFAULT NULL,
-  `job_post_skill` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`job_post_skill_id`),
-  KEY `job_post_skills_job_post_id_foreign` (`job_post_id`),
-  CONSTRAINT `job_post_skills_job_post_id_foreign` FOREIGN KEY (`job_post_id`) REFERENCES `job_posts` (`job_post_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-/*Data for the table `job_post_skills` */
-
-insert  into `job_post_skills`(`job_post_skill_id`,`job_post_id`,`job_post_skill`,`created_at`,`updated_at`) values 
-(1,3,'PROGRAMMER',NULL,NULL);
-
-/*Table structure for table `job_posts` */
-
-DROP TABLE IF EXISTS `job_posts`;
-
-CREATE TABLE `job_posts` (
-  `job_post_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `company_id` bigint(20) unsigned DEFAULT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `job_desc` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `minimum_qualification` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `minimum_experience` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `jobtype_id` bigint(20) unsigned DEFAULT NULL,
-  `category_id` bigint(20) unsigned DEFAULT NULL,
-  `from_salary` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `to_salary` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `province` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `barangay` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `street` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `active` tinyint(4) DEFAULT 1,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`job_post_id`),
-  KEY `job_posts_company_id_foreign` (`company_id`),
-  KEY `job_posts_jobtype_id_foreign` (`jobtype_id`),
-  KEY `job_posts_category_id_foreign` (`category_id`),
-  CONSTRAINT `job_posts_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `job_posts_company_id_foreign` FOREIGN KEY (`company_id`) REFERENCES `companies` (`company_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `job_posts_jobtype_id_foreign` FOREIGN KEY (`jobtype_id`) REFERENCES `job_types` (`jobtype_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-/*Data for the table `job_posts` */
-
-insert  into `job_posts`(`job_post_id`,`company_id`,`title`,`job_desc`,`minimum_qualification`,`minimum_experience`,`jobtype_id`,`category_id`,`from_salary`,`to_salary`,`province`,`city`,`barangay`,`street`,`active`,`created_at`,`updated_at`) values 
-(1,1,'LF: LABANDERA','<p>Kanang dili tapulan ug reklamado, kanang dili alergy ug sabon.</p>','NOT REQUIRED','Below 1 Year',2,10,'150','200','1042','104215','104215025','p-bougainvilla',1,NULL,NULL),
-(2,1,'PROGRAMMER PROJECT BASE','<p>Project Base Programmer</p><p><br></p><p>Looking for a programmer. Kanang less surpervision and can do the task.</p><p><br></p><p><strong>Requirements</strong></p><ul><li>taas logic</li><li>BSCS/IT graduate or any related programs</li><li>Good Manners</li><li>Good Communication Skill</li></ul>','BACHELOR','1 - 3 Years',6,9,'20000','30000','1042','104215','104215025','',1,NULL,NULL),
-(3,1,'LF: FRONT END DEV','<p>bsta front end		</p>','NOT REQUIRED','Below 1 Year',2,3,'1000','1200','1538','153816','153816007','SAMPLE LANG',0,'2022-12-27 11:15:15','2023-01-11 10:21:51');
-
-/*Table structure for table `job_types` */
-
-DROP TABLE IF EXISTS `job_types`;
-
-CREATE TABLE `job_types` (
-  `jobtype_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `jobtype` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`jobtype_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-/*Data for the table `job_types` */
-
-insert  into `job_types`(`jobtype_id`,`jobtype`,`created_at`,`updated_at`) values 
-(1,'WEEKLY',NULL,NULL),
-(2,'DAILY',NULL,NULL),
-(3,'MONTHLY',NULL,NULL),
-(4,'PARTIMER',NULL,NULL),
-(5,'PERMANENT',NULL,NULL),
-(6,'JOB ORDER',NULL,NULL);
+insert  into `learning_developments`(`learning_dev_id`,`user_id`,`title_learning_dev`,`date_from`,`date_to`,`no_hours`,`type_ld`,`sponsored_by`,`attach_path`,`ratings`,`created_at`,`updated_at`) values 
+(1,2,'C# PROGRAMMING','2022-01-01','2022-01-01','50','FOUNDATION','DICT',NULL,10,'2022-11-30 17:49:32','2023-01-12 22:56:22'),
+(11,2,'TRAINING WORKSHOP ON CURRICULUM DEVELOPMENT','2023-01-03','2023-01-10','40','SUPERVISORY','DICT',NULL,12,'2023-01-03 19:53:11','2023-01-12 22:56:22'),
+(12,2,'PYTHON ESSENTIAL PROGRAMMING','2023-01-16','2023-01-26','40','CURRICULUM','DICT',NULL,1,'2023-01-03 19:53:51','2023-01-12 22:56:22'),
+(13,2,'ADOBE PHOTOSHOP','2023-01-04','2023-01-17','60','MANEGERIAL','DICT',NULL,0,'2023-01-03 20:21:03','2023-01-12 22:56:22'),
+(14,2,'ASDADWAWD','2023-01-09','2023-01-13','50','SUPERVISORY','ASDAWDAWD',NULL,0,'2023-01-03 20:35:25','2023-01-12 22:56:22'),
+(15,22,'INFORMATION AND COMMUNICATIONS TECHNOLOGY SERVICE','2023-01-13','2023-01-13','4 hours','MANEGERIAL','ANONYMOUS PERSON',NULL,0,'2023-01-13 03:58:44','2023-01-13 03:58:44'),
+(16,22,'ICS PROGRAM','2023-01-18','2023-02-13','4 hours','TRAININGS','none',NULL,0,'2023-01-13 04:02:11','2023-01-13 04:02:11'),
+(17,2,'ASDAWDWA','2023-01-11','2023-01-15','123','FOUNDATION','ASDAWD',NULL,0,'2023-01-16 09:20:24','2023-01-16 11:10:36'),
+(19,2,'DASD','2017-01-16','2017-01-20','23','FOUNDATION','ASDAS',NULL,0,'2023-01-16 19:29:08','2023-01-19 14:21:42'),
+(20,2,'ASDAWD','2020-01-16','2020-01-20','23','SUPERVISORY','ASDA',NULL,0,'2023-01-16 19:30:52','2023-01-19 14:21:42');
 
 /*Table structure for table `migrations` */
 
@@ -44037,27 +43995,74 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=342 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `migrations` */
 
 insert  into `migrations`(`id`,`migration`,`batch`) values 
-(326,'2014_10_12_000000_create_users_table',1),
-(327,'2014_10_12_100000_create_password_resets_table',1),
-(328,'2019_08_19_000000_create_failed_jobs_table',1),
-(329,'2019_12_14_000001_create_personal_access_tokens_table',1),
-(330,'2022_05_17_082807_create_skills_table',1),
-(331,'2022_09_05_154200_create_job_types_table',1),
-(332,'2022_09_05_154228_create_categories_table',1),
-(333,'2022_09_05_154243_create_companies_table',1),
-(334,'2022_09_05_154300_create_hires_table',1),
-(335,'2022_10_25_221105_create_job_posts_table',1),
-(336,'2022_11_08_132316_create_user_categories_table',1),
-(337,'2022_12_11_195954_create_applicants_table',1),
-(338,'2022_12_16_095701_create_qualifications_table',1),
-(339,'2022_12_17_082634_create_job_post_skills_table',1),
-(340,'2022_12_21_214649_create_company_ratings_table',1),
-(341,'2022_12_22_094336_create_employee_ratings_table',1);
+(99,'2014_10_12_000000_create_users_table',1),
+(100,'2014_10_12_100000_create_password_resets_table',1),
+(101,'2019_08_19_000000_create_failed_jobs_table',1),
+(102,'2019_12_14_000001_create_personal_access_tokens_table',1),
+(103,'2022_10_22_185254_create_civil_statuses_table',1),
+(104,'2022_10_22_193903_create_children_table',1),
+(105,'2022_10_22_201222_create_educational_backgrounds_table',1),
+(106,'2022_10_22_211537_create_civil_service_eligibilities_table',1),
+(107,'2022_10_22_211600_create_work_experiences_table',1),
+(108,'2022_10_22_212021_create_voluntary_works_table',1),
+(109,'2022_10_22_212053_create_learning_developments_table',1),
+(110,'2022_10_22_234411_create_citizenships_table',1),
+(111,'2022_11_30_173416_create_other_informations_table',2);
+
+/*Table structure for table `other_informations` */
+
+DROP TABLE IF EXISTS `other_informations`;
+
+CREATE TABLE `other_informations` (
+  `other_info_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) unsigned NOT NULL,
+  `skill_hobbies` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `non_academic_distinction` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `member_association` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`other_info_id`),
+  KEY `other_informations_user_id_foreign` (`user_id`),
+  CONSTRAINT `other_informations_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `other_informations` */
+
+insert  into `other_informations`(`other_info_id`,`user_id`,`skill_hobbies`,`non_academic_distinction`,`member_association`,`created_at`,`updated_at`) values 
+(1,2,'MATH','','','2022-11-30 19:02:17','2023-01-16 07:28:26'),
+(3,2,'MATH','','','2023-01-05 15:55:37','2023-01-12 23:43:28'),
+(4,2,'FILIPINO','','','2023-01-06 10:58:02','2023-01-06 10:58:02'),
+(5,20,'ENGLISH',NULL,NULL,'2023-01-13 03:00:25','2023-01-13 03:05:38'),
+(6,20,'FILIPINO','insert ni xa',NULL,'2023-01-13 03:04:09','2023-01-13 03:04:09'),
+(7,20,'GUIDANCE','sample lang',NULL,'2023-01-13 03:06:12','2023-01-13 03:06:35'),
+(8,22,'ENGLISH','AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA','BBBBBBBBBBBBBBBBBBBBBBBBB','2023-01-13 03:12:26','2023-01-13 03:58:44'),
+(9,21,'ENGLISH',NULL,NULL,'2023-01-13 03:12:35','2023-01-13 03:12:35'),
+(10,19,'FILIPINO',NULL,NULL,'2023-01-13 03:13:27','2023-01-13 03:13:27'),
+(11,18,'FILIPINO',NULL,NULL,'2023-01-13 03:13:37','2023-01-13 03:13:37'),
+(12,17,'MATH',NULL,NULL,'2023-01-13 03:13:50','2023-01-13 03:13:50'),
+(13,16,'MATH',NULL,NULL,'2023-01-13 03:13:59','2023-01-13 03:13:59'),
+(14,15,'BIOLOGY',NULL,NULL,'2023-01-13 03:14:11','2023-01-13 03:14:11'),
+(15,22,'FILIPINO','DDDDDDDDDDDDDDDDDDDDDDDDD','CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC','2023-01-13 03:14:20','2023-01-13 03:58:44'),
+(16,21,'FILIPINO',NULL,NULL,'2023-01-13 03:14:29','2023-01-13 03:14:29'),
+(17,20,'MATH',NULL,NULL,'2023-01-13 03:14:37','2023-01-13 03:14:37'),
+(18,14,'TLE',NULL,NULL,'2023-01-13 03:14:51','2023-01-13 03:14:51'),
+(19,13,'FILIPINO',NULL,NULL,'2023-01-13 03:15:11','2023-01-13 03:15:11'),
+(20,13,'ENGLISH',NULL,NULL,'2023-01-13 03:15:20','2023-01-13 03:15:20'),
+(21,12,'ENGLISH',NULL,NULL,'2023-01-13 03:15:30','2023-01-13 03:15:30'),
+(22,12,'MATH',NULL,NULL,'2023-01-13 03:15:39','2023-01-13 03:15:39'),
+(23,11,'ARALIN PANLIPUNAN',NULL,NULL,'2023-01-13 03:15:47','2023-01-13 03:15:47'),
+(24,10,'ENGLISH',NULL,NULL,'2023-01-13 03:15:56','2023-01-13 03:15:56'),
+(27,7,'BIOLOGY',NULL,NULL,'2023-01-13 03:16:23','2023-01-13 03:16:23'),
+(28,4,'ENGLISH',NULL,NULL,'2023-01-13 03:16:52','2023-01-13 03:16:52'),
+(29,4,'FILIPINO',NULL,NULL,'2023-01-13 03:17:00','2023-01-13 03:17:00'),
+(31,2,'ENGLISH','','','2023-01-13 03:17:20','2023-01-16 07:28:26'),
+(32,16,NULL,NULL,NULL,'2023-01-13 03:17:40','2023-01-13 03:17:40'),
+(33,17,'DANCING',NULL,NULL,'2023-01-13 03:18:03','2023-01-13 03:18:03');
 
 /*Table structure for table `password_resets` */
 
@@ -44199,81 +44204,147 @@ insert  into `provinces`(`id`,`psgcCode`,`provDesc`,`regCode`,`provCode`,`active
 (87,'166800000','SURIGAO DEL SUR','16','1668',0),
 (88,'168500000','DINAGAT ISLANDS','16','1685',0);
 
-/*Table structure for table `qualifications` */
+/*Table structure for table `recommended_teacher_lists` */
 
-DROP TABLE IF EXISTS `qualifications`;
+DROP TABLE IF EXISTS `recommended_teacher_lists`;
 
-CREATE TABLE `qualifications` (
-  `qualification_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `qualification` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`qualification_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE `recommended_teacher_lists` (
+  `recommended_teacher_list_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `recommended_teacher_id` bigint(20) unsigned NOT NULL,
+  `teacher_id` bigint(20) unsigned NOT NULL,
+  `lname` varchar(255) DEFAULT NULL,
+  `fname` varchar(255) DEFAULT NULL,
+  `mname` varchar(255) DEFAULT NULL,
+  `sex` varchar(255) DEFAULT NULL,
+  `specialization` varchar(255) DEFAULT NULL,
+  `no_seminars` int(11) DEFAULT 0,
+  `remarks` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`recommended_teacher_list_id`),
+  KEY `recommended_teacher_id` (`recommended_teacher_id`),
+  CONSTRAINT `recommended_teacher_lists_ibfk_1` FOREIGN KEY (`recommended_teacher_id`) REFERENCES `recommended_teachers` (`recommended_teacher_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=utf8mb4;
 
-/*Data for the table `qualifications` */
+/*Data for the table `recommended_teacher_lists` */
 
-insert  into `qualifications`(`qualification_id`,`qualification`,`created_at`,`updated_at`) values 
-(1,'NOT REQUIRED',NULL,NULL),
-(2,'HIGH SCHOOL / SENIOR HIGH SCHOOL',NULL,NULL),
-(3,'DIMPLOMA',NULL,NULL),
-(4,'BACHELOR',NULL,NULL),
-(5,'MASTER',NULL,NULL),
-(6,'DOCTOR',NULL,NULL);
+insert  into `recommended_teacher_lists`(`recommended_teacher_list_id`,`recommended_teacher_id`,`teacher_id`,`lname`,`fname`,`mname`,`sex`,`specialization`,`no_seminars`,`remarks`,`created_at`,`updated_at`) values 
+(76,17,12,'CAGADAS','JOHN MICHAEL','QUIMBO','MALE','ENGLISH, MATH',0,NULL,'2023-01-15 21:21:44','2023-01-15 21:21:44'),
+(77,17,13,'JUMAWID','IRISH','DANO','FEMALE','FILIPINO, ENGLISH',0,NULL,'2023-01-15 21:21:44','2023-01-15 21:21:44'),
+(78,17,20,'PULGO','ANGEL',NULL,'MALE','ENGLISH, FILIPINO, GUIDANCE, MATH',0,NULL,'2023-01-15 21:21:44','2023-01-15 21:21:44'),
+(79,17,21,'HAMMAD','CRISTIAN','MARIO','MALE','ENGLISH, FILIPINO',0,NULL,'2023-01-15 21:21:44','2023-01-15 21:21:44'),
+(80,18,4,'KOPIKO','THREE',NULL,'MALE','ENGLISH, FILIPINO',0,NULL,'2023-01-15 21:40:13','2023-01-15 21:40:13'),
+(81,18,10,'SAQUIN','CHERRY MAE','EGOS','FEMALE','ENGLISH',0,NULL,'2023-01-15 21:40:13','2023-01-15 21:40:13'),
+(82,18,13,'JUMAWID','IRISH','DANO','FEMALE','FILIPINO, ENGLISH',0,NULL,'2023-01-15 21:40:13','2023-01-15 21:40:13'),
+(83,18,20,'PULGO','ANGEL',NULL,'MALE','ENGLISH, FILIPINO, GUIDANCE, MATH',0,NULL,'2023-01-15 21:40:13','2023-01-15 21:40:13'),
+(84,18,21,'HAMMAD','CRISTIAN','MARIO','MALE','ENGLISH, FILIPINO',0,NULL,'2023-01-15 21:40:13','2023-01-15 21:40:13'),
+(85,19,11,'SEGONGAN','JANMARK','IGNO','MALE','ARALIN PANLIPUNAN',0,NULL,'2023-01-16 11:05:43','2023-01-16 11:05:43'),
+(86,19,2,'VARGAS','CHARLES','P','MALE','ARALIN PANLIPUNAN',NULL,NULL,'2023-01-16 11:05:43','2023-01-16 11:05:43'),
+(87,20,11,'SEGONGAN','JANMARK','IGNO','MALE','ARALIN PANLIPUNAN',0,NULL,'2023-01-16 11:07:34','2023-01-16 11:07:34'),
+(88,20,2,'VARGAS','CHARLES','P','MALE','ARALIN PANLIPUNAN',NULL,NULL,'2023-01-16 11:07:34','2023-01-16 11:07:34'),
+(89,21,2,'VARGAS','CHARLES','P','MALE','ARALIN PANLIPUNAN',NULL,NULL,'2023-01-16 11:08:14','2023-01-16 11:08:14'),
+(90,22,4,'KOPIKO','THREE',NULL,'MALE','ENGLISH, FILIPINO',0,NULL,'2023-01-16 11:08:40','2023-01-16 11:08:40'),
+(91,22,10,'SAQUIN','CHERRY MAE','EGOS','FEMALE','ENGLISH',0,NULL,'2023-01-16 11:08:40','2023-01-16 11:08:40'),
+(92,22,12,'CAGADAS','JOHN MICHAEL','QUIMBO','MALE','ENGLISH, MATH',0,NULL,'2023-01-16 11:08:40','2023-01-16 11:08:40'),
+(93,22,13,'JUMAWID','IRISH','DANO','FEMALE','FILIPINO, ENGLISH',0,NULL,'2023-01-16 11:08:40','2023-01-16 11:08:40');
 
-/*Table structure for table `skills` */
+/*Table structure for table `recommended_teachers` */
 
-DROP TABLE IF EXISTS `skills`;
+DROP TABLE IF EXISTS `recommended_teachers`;
 
-CREATE TABLE `skills` (
-  `skill_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `skill` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`skill_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE `recommended_teachers` (
+  `recommended_teacher_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `seminar_post_id` bigint(20) unsigned NOT NULL,
+  `seminar_title` varchar(255) DEFAULT NULL,
+  `remarks` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`recommended_teacher_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4;
 
-/*Data for the table `skills` */
+/*Data for the table `recommended_teachers` */
 
-insert  into `skills`(`skill_id`,`skill`,`created_at`,`updated_at`) values 
-(1,'SOFTWARE ENGINEER',NULL,NULL),
-(2,'PROGRAMMER',NULL,NULL),
-(3,'MULTIMEDIA & ARTS',NULL,NULL),
-(4,'CARPENTER',NULL,NULL),
-(5,'MASON',NULL,NULL),
-(6,'WASHER',NULL,NULL),
-(7,'DRIVER',NULL,NULL),
-(8,'BACKHOE OPERATOR',NULL,NULL),
-(9,'DUMPTRUCK DRIVER',NULL,NULL),
-(10,'ACCOUNTANT',NULL,NULL),
-(11,'FINANCING',NULL,NULL);
+insert  into `recommended_teachers`(`recommended_teacher_id`,`seminar_post_id`,`seminar_title`,`remarks`,`created_at`,`updated_at`) values 
+(17,11,'Developing Authentic Assessments of Higher-Order Thinking Skills - Science','aaa','2023-01-15 21:21:44','2023-01-15 21:21:44'),
+(18,11,'Developing Authentic Assessments of Higher-Order Thinking Skills - Science','asdawasdaw','2023-01-15 21:40:13','2023-01-15 21:40:13'),
+(19,10,'Introduction to SEL','asadw','2023-01-16 11:05:43','2023-01-16 11:05:43'),
+(20,10,'Introduction to SEL','sample forward','2023-01-16 11:07:34','2023-01-16 11:07:34'),
+(21,10,'Introduction to SEL','sample forward','2023-01-16 11:08:14','2023-01-16 11:08:14'),
+(22,11,'Developing Authentic Assessments of Higher-Order Thinking Skills - Science','kopiko seminar','2023-01-16 11:08:40','2023-01-16 11:08:40');
 
-/*Table structure for table `user_categories` */
+/*Table structure for table `seminar_posts` */
 
-DROP TABLE IF EXISTS `user_categories`;
+DROP TABLE IF EXISTS `seminar_posts`;
 
-CREATE TABLE `user_categories` (
-  `user_category_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `seminar_posts` (
+  `seminar_post_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `img_path` varchar(255) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `skills` varchar(255) DEFAULT NULL,
+  `ld_type` varchar(255) DEFAULT NULL,
+  `conducted_by` varchar(255) DEFAULT NULL,
+  `cpd_units` varchar(255) DEFAULT NULL,
+  `no_hours` varchar(255) DEFAULT NULL,
+  `specialization` varchar(255) DEFAULT NULL,
+  `seminar_date` date DEFAULT NULL,
+  `date_posted` date DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`seminar_post_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4;
+
+/*Data for the table `seminar_posts` */
+
+insert  into `seminar_posts`(`seminar_post_id`,`img_path`,`title`,`description`,`skills`,`ld_type`,`conducted_by`,`cpd_units`,`no_hours`,`specialization`,`seminar_date`,`date_posted`,`created_at`,`updated_at`) values 
+(10,'ROYruGCmkqzDLsegjreULjW4rZ29vjEoTdB8onOF.png','Introduction to SEL','Building and Fostering Social and Emotional Skills of Children in School and at Home is a 3-hour webinar that aims to enhance your understanding of social and emotional skills and learn strategies for school administrators, teachers, guidance counselors, and parents on (a) Creating an environment that allows for purposeful social and emotional growth as in-person learning returns; (b) Using conversation in developing the foundational skills of Social Emotional Learning, and (c) Integrating Social Emotional Learning (SEL) practices in school and at home to create a Brave Space for our children.','asd','TRAININGS','undefined','2','40','ARALIN PANLIPUNAN','2023-01-16','2023-01-13','2023-01-13 02:04:21','2023-01-13 10:47:44'),
+(11,'Wk9Klc1iYp5Fjs2Yaterxt1K5gVkM1qVcMa8nDe8.webp','Developing Authentic Assessments of Higher-Order Thinking Skills - Science','This is an in-depth online training program that aims to empower educators to develop and prepare authentic learning and assessment programs aligned with the higher-order thinking skills that will motivate, engage, and capture the interest of the students through the use of digital tools and other modalities. This training program will enhance teachers’ competencies in science through the use of authentic assessment, digital tools, and other modalities that will help learners in developing higher order thinking skills through lectures, workshops, group discussions, and hands-on activities.','asda','TRAININGS','CEM','2','40','ENGLISH','2023-01-24','2023-01-13','2023-01-13 02:32:01','2023-01-13 02:32:01'),
+(12,'EGBozaw3yv9g7jcUXOBvjbaAQOhgBDKxLHBoJZHp.jpg','Improving Career Guidance Program through CEM Test Data Utilization','Improving Career Guidance Program through CEM Test Data Utilization is an online training program designed to build competencies of guidance counselors in interpreting and analyzing career guidance test (CGT) results and using these as well as other sources of information to help students make decisions about their higher education options, future jobs, and careers. Participants will be guided on how to interpret and analyze standardized career guidance test results, discuss these with students, parents, and school administrators, and make recommendations to improve the school’s career guidance program. The learning modality is a combination of synchronous and asynchronous sessions that includes lectures, workshops, group, and individual tasks.','asdaw','TRAININGS','CEM','undefined','20','ENGLISH','2023-02-14','2023-01-13','2023-01-13 02:34:20','2023-01-13 02:34:20'),
+(13,'WMSfd3cielKLZAR8icv4CiHgqcEM1ZJXE9NarIt8.jpg','In officia est est','Consequatur Magna d','skills','CHARLES','Ipsam in enim conseq','Modi aliquid asperna','78','ARALIN PANLIPUNAN','2023-01-11','2023-01-16','2023-01-16 12:17:23','2023-01-16 12:17:23'),
+(14,'','Blanditiis dolore re','Proident sint enim','skills','TECHNICAL','Non aut est voluptas','Nihil veniam offici','35','ENGLISH','2023-01-11','2023-01-16','2023-01-16 12:17:48','2023-01-16 12:17:48'),
+(16,'','sample','dadw','sda','undefined','undefined','undefined','undefined','undefined','2023-01-15','2023-01-16','2023-01-16 19:35:18','2023-01-16 19:35:18'),
+(17,'','sample','asdawd','asd','FOUNDATION','undefined','12','12','ENGLISH','2023-01-10','2023-01-18','2023-01-18 04:58:02','2023-01-18 04:58:02'),
+(18,'','sadawd','asdawd','asdw','FOUNDATION','sadaw','12','123','DANCING','2023-01-24','2023-01-18','2023-01-18 04:58:48','2023-01-18 04:58:48');
+
+/*Table structure for table `specializations` */
+
+DROP TABLE IF EXISTS `specializations`;
+
+CREATE TABLE `specializations` (
+  `specialization_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `specialization` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`specialization_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
+
+/*Data for the table `specializations` */
+
+insert  into `specializations`(`specialization_id`,`specialization`,`created_at`,`updated_at`) values 
+(1,'FILIPINO',NULL,NULL),
+(2,'ARALIN PANLIPUNAN',NULL,NULL),
+(3,'TLE',NULL,NULL),
+(4,'ENGLISH',NULL,NULL),
+(5,'MATH',NULL,NULL),
+(6,'BIOLOGY',NULL,NULL),
+(11,'DANCING','2023-01-13 03:04:44','2023-01-13 03:04:44'),
+(12,'GUIDANCE','2023-01-13 03:04:53','2023-01-13 03:04:53'),
+(13,'TLE','2023-01-13 03:05:14','2023-01-13 03:05:14');
+
+/*Table structure for table `user_specializations` */
+
+DROP TABLE IF EXISTS `user_specializations`;
+
+CREATE TABLE `user_specializations` (
+  `user_specialization_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` bigint(20) unsigned NOT NULL,
-  `category_id` bigint(20) unsigned NOT NULL,
-  `remarks` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`user_category_id`),
-  KEY `user_categories_user_id_foreign` (`user_id`),
-  KEY `user_categories_category_id_foreign` (`category_id`),
-  CONSTRAINT `user_categories_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `user_categories_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `specialization` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`user_specialization_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-/*Data for the table `user_categories` */
-
-insert  into `user_categories`(`user_category_id`,`user_id`,`category_id`,`remarks`,`created_at`,`updated_at`) values 
-(1,2,12,NULL,'2022-12-28 06:17:15','2022-12-28 06:17:15'),
-(2,2,5,NULL,'2022-12-28 06:17:15','2022-12-28 06:17:15'),
-(3,2,9,NULL,'2022-12-28 06:27:29','2022-12-28 06:27:29'),
-(4,4,9,NULL,NULL,NULL),
-(6,11,9,NULL,NULL,NULL);
+/*Data for the table `user_specializations` */
 
 /*Table structure for table `users` */
 
@@ -44285,37 +44356,167 @@ CREATE TABLE `users` (
   `lname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `fname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `mname` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `suffix` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `suffix` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `date_birth` date DEFAULT NULL,
+  `place_birth` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sex` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `bdate` date DEFAULT NULL,
-  `province` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `barangay` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `street` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `school_assigned` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `civil_status` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `civil_status_others` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `height` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `weight` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `blood_type` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `gsis` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pagibig` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `philhealth` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sss` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tin` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `agency_idno` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `citizenship` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `res_province` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `res_city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `res_barangay` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `res_street` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `res_houseno_blockno` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `res_zipcode` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `per_province` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `per_city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `per_barangay` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `per_street` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `per_houseno_blockno` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `per_zipcode` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tel_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `contact_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `role` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
+  `spouse_surname` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `spouse_fname` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `spouse_mname` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `spouse_suffix` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `spouse_occupation` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `business_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `business_address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `business_contact_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `father_surname` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `father_fname` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `father_mname` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `father_suffix` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mother_maiden_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mother_fname` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mother_mname` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mother_suffix` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `role` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_verified` tinyint(4) DEFAULT 0,
+  `related_with_third_degree` tinyint(4) DEFAULT NULL,
+  `related_with_fourth_degree` tinyint(4) DEFAULT NULL,
+  `related_with_fourth_degree_yes` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_guilty_administrative_offense` tinyint(4) DEFAULT NULL,
+  `is_guilty_administrative_offense_yes` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_criminally_charge` tinyint(4) DEFAULT NULL,
+  `is_criminally_charge_yes` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `date_filed` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `case_status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_convicted` tinyint(4) DEFAULT NULL,
+  `is_convicted_yes` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_separated` tinyint(4) DEFAULT NULL,
+  `is_separated_yes_details` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_candidate_election` tinyint(4) DEFAULT NULL,
+  `is_candiadte_election_yes` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_resigned` tinyint(4) DEFAULT NULL,
+  `is_resigned_yes` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_immigrant` tinyint(4) DEFAULT NULL,
+  `is_immigrant_yes` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_indigenous` tinyint(4) DEFAULT NULL,
+  `is_indigenous_yes` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_disable` tinyint(4) DEFAULT NULL,
+  `is_disable_id_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_solo_parent` tinyint(4) DEFAULT NULL,
+  `is_solo_parent_yes` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `users_username_unique` (`username`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `users` */
 
-insert  into `users`(`user_id`,`username`,`lname`,`fname`,`mname`,`suffix`,`sex`,`bdate`,`province`,`city`,`barangay`,`street`,`email`,`contact_no`,`role`,`email_verified_at`,`password`,`avatar`,`remember_token`,`created_at`,`updated_at`) values 
-(1,'admin','ABELLA','LEDA GRACE','P',NULL,'MALE',NULL,'1042','104215','104215025','p-bougainvilla','admin@dev.com','09167789585','ADMINISTRATOR',NULL,'$2y$10$18qEW2LfOrvu2pCiXKGEi.irvng0zP3vSI2G4./EYbOGPRVxxB6aa',NULL,NULL,NULL,NULL),
-(2,'mon','LUMAPAC','RAMONITO','P','NULL','MALE','1970-01-01','1042','104215','104215025','UNDEFINED','neri@dev.com','09971794574','EMPLOYEE',NULL,'$2y$10$c4NiWrabb97hPm1GD.pG8ecm0WeNWBN/Vg8.cY62KwinCgQtnPf8O',NULL,NULL,NULL,'2022-12-28 06:02:56'),
-(3,'emp01','SACAN','NIMROD','P',NULL,'MALE',NULL,'1042','104215','104215025','p-bougainvilla','sacan@dev.com','09167789585','EMPLOYER',NULL,'$2y$10$ZejH7qg6b.falKzkDIdmI.48VnA/2lnTHWBlmgg50cIxULlPRSOhe',NULL,NULL,NULL,NULL),
-(4,'leda','ABELLA','LEDA GRACE','',NULL,'FEMALE',NULL,'1042','104215','104215025','p-bougainvilla','leda@dev.com','09167789585','EMPLOYER',NULL,'$2y$10$9dZQhKHWxbkfb/ql9PGz5.pjGtL0Fea2n.iQuFGQ47e138nyjgaGO',NULL,NULL,NULL,NULL),
-(5,'aa','ASDA','ASDAW','','','MALE',NULL,'0314','031414','031414008','','aa@gmail.com','1234','EMPLOYEE',NULL,'$2y$10$ExpubQYVDYNH14xhPvtaPOwjHZgT.c6PJIG4ti4dsGk0gZqrnr5Uq',NULL,NULL,'2023-01-07 23:28:11','2023-01-07 23:28:11'),
-(10,'etienne','AMPARADO','ETIENNE','','','MALE',NULL,'1013','101311','101311009','','etiennewayne@gmail.com','12434','EMPLOYEE','2023-01-11 11:41:34','$2y$10$UacDVoN91ZatTpEPCDZiPu/GxCrCvoikFmLNO3CIw3P8cpOk7Qu5O',NULL,NULL,'2023-01-11 10:58:03','2023-01-11 11:41:34'),
-(11,'santa','SANTRIA','JUNREY','','','MALE',NULL,'1602','160201','160201001','','santarita@gmail.com','12343','EMPLOYEE','2023-01-11 11:44:48','$2y$10$7tk9YmPK41GgaQ4nKmAT2u9Qdmb3FyPoUxsfbScH6/mIdouXK9GBK',NULL,NULL,'2023-01-11 11:43:09','2023-01-11 11:44:48');
+insert  into `users`(`user_id`,`username`,`lname`,`fname`,`mname`,`suffix`,`date_birth`,`place_birth`,`sex`,`school_assigned`,`civil_status`,`civil_status_others`,`height`,`weight`,`blood_type`,`gsis`,`pagibig`,`philhealth`,`sss`,`tin`,`agency_idno`,`citizenship`,`res_province`,`res_city`,`res_barangay`,`res_street`,`res_houseno_blockno`,`res_zipcode`,`per_province`,`per_city`,`per_barangay`,`per_street`,`per_houseno_blockno`,`per_zipcode`,`tel_no`,`contact_no`,`email`,`email_verified_at`,`spouse_surname`,`spouse_fname`,`spouse_mname`,`spouse_suffix`,`spouse_occupation`,`business_name`,`business_address`,`business_contact_no`,`father_surname`,`father_fname`,`father_mname`,`father_suffix`,`mother_maiden_name`,`mother_fname`,`mother_mname`,`mother_suffix`,`role`,`password`,`remember_token`,`is_verified`,`related_with_third_degree`,`related_with_fourth_degree`,`related_with_fourth_degree_yes`,`is_guilty_administrative_offense`,`is_guilty_administrative_offense_yes`,`is_criminally_charge`,`is_criminally_charge_yes`,`date_filed`,`case_status`,`is_convicted`,`is_convicted_yes`,`is_separated`,`is_separated_yes_details`,`is_candidate_election`,`is_candiadte_election_yes`,`is_resigned`,`is_resigned_yes`,`is_immigrant`,`is_immigrant_yes`,`is_indigenous`,`is_indigenous_yes`,`is_disable`,`is_disable_id_no`,`is_solo_parent`,`is_solo_parent_yes`,`created_at`,`updated_at`) values 
+(1,'admin','VARGAS','CHARLES','P',NULL,NULL,NULL,'MALE',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'MISAMIS OCCIDENTAL','TANGUB CITY','CANIANGAN','P-6',NULL,NULL,'MISAMIS OCCIDENTAL','TANGUB CITY','CANIANGAN','P-6',NULL,NULL,NULL,'09167789585','admin@dev.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'ADMINISTRATOR','$2y$10$7xTo9lOrooGB6jmzyDWP6uNSbBBM55M8/0dARdy0TG.sZgmjBvp2m',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+(2,'charles','VARGAS','CHARLES','P','','1988-08-08','MALORO, TANGUB CITY','MALE','TANGUB CITY HIGH SCHOOL','SINGLE',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'1324-aa547','FILIPINO','1411','141104','141104003','SDAWD','AAA','aaaa','0516','051606','051606018','BBBB','BBBB','bbb',NULL,'09683014598','et@dev.com',NULL,'','','','',NULL,'','',NULL,'','','','','','','','','FACULTY','$2y$10$WTIFrY4ld/J6XOpGmQAzMemIFxJ1e3ci0wAWFWoZuZVADKl.ELAwa',NULL,1,0,0,'adaw',0,NULL,0,NULL,NULL,NULL,0,NULL,0,NULL,0,NULL,0,NULL,NULL,NULL,0,NULL,0,NULL,0,NULL,NULL,'2023-01-19 14:21:50'),
+(3,'lui','LUI','ALEXANDER','','','2023-01-04','MALORO, TANGUB CITY','MALE',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0520','052005','052005003','SED RATIONE QUI SINT',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Ea praesentium quae','carawuda@mailinator.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'HRLD','$2y$10$7xTo9lOrooGB6jmzyDWP6uNSbBBM55M8/0dARdy0TG.sZgmjBvp2m',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2022-10-23 09:12:11','2023-01-05 14:23:27'),
+(4,'kopiko','KOPIKO','THREE','','',NULL,NULL,'MALE',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'1042','104215','104215025','SAMPLE',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'1234567879','kopiko@mail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'FACULTY','$2y$10$WZAF6wU8fLEEeg7MMNSusuSmtPNFoCqeTYSKoLxo2ybD7tmW11M0C',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2023-01-05 14:29:14','2023-01-05 14:29:14'),
+(5,'cid','PRADIA','LEDA','','',NULL,NULL,'FEMALE',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'1603','160301','160301028','ASDAS',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'321564546','cid@dev.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'CID','$2y$10$bpBsTeizSVbHmhT.kMWprODtmJuZemcV7IBNjYUHFvF5kfoIW/tu.',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2023-01-05 14:30:46','2023-01-06 09:01:59'),
+(7,'hrld','AA','AA','',NULL,NULL,NULL,'MALE',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0517','051715','051715016','AAA',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'132','aa@mail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'HRLD','$2y$10$7xTo9lOrooGB6jmzyDWP6uNSbBBM55M8/0dARdy0TG.sZgmjBvp2m',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2023-01-06 08:17:37','2023-01-13 04:06:43'),
+(10,'Cherry','SAQUIN','CHERRY MAE','EGOS','N/A',NULL,NULL,'FEMALE',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'123456',NULL,'1042','104210','104210017','ALQUIZAR ST.',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'09683021376','cherry@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'FACULTY','$2y$10$suKVi3KIszpSJwlvIIHMBO5MmX3wz8Uc8T6gl2Lvc03BmFvpsYirC',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2023-01-13 01:20:50','2023-01-13 01:20:50'),
+(11,'Janmark','SEGONGAN','JANMARK','IGNO','N/A',NULL,NULL,'MALE',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'123455',NULL,'1042','104210','104210037','VANDA',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'09685643246','janmark@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'FACULTY','$2y$10$Ep7KqTdcddXayWjtiKvHeevQosUXyaWYsGXnoYAnUzY5oLb/SZrbC',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2023-01-13 01:22:47','2023-01-13 01:22:47'),
+(12,'Michael','CAGADAS','JOHN MICHAEL','QUIMBO','N/A',NULL,NULL,'MALE',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'123454',NULL,'1042','104210','104210012','ROSAS',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'09683021354','michael@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'FACULTY','$2y$10$MMR3Eq3213fzfBA1toAEHO3D5a6gxEqt.fgvDsGoztslLpylkeXmm',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2023-01-13 01:25:06','2023-01-13 01:25:06'),
+(13,'Irish','JUMAWID','IRISH','DANO','N/A',NULL,NULL,'FEMALE',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'123454',NULL,'1042','104211','104211013','DOVE',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'09683021387','irish@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'FACULTY','$2y$10$A/gyP7BIh4b7fn4NHklNJOu3sf6NxXw4DDp.6ngyin0JIQis3cOPO',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2023-01-13 01:27:35','2023-01-13 01:27:35'),
+(14,'John','MAGHANOY','JOHN','SANDOVAL','N/A',NULL,NULL,'MALE',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'123453',NULL,'1042','104210','104210011','KANYON',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'09683021321','john@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'FACULTY','$2y$10$axb6VKYKp/ybJsVVClZfsetR1G/yTIW/JH6WWB9.6EWdymhyUMqve',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2023-01-13 01:29:28','2023-01-13 01:29:28'),
+(15,'Daniel','LAPINIG','DANIEL','MANDAWE','N/A',NULL,NULL,'MALE',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'123452',NULL,'1042','104213','104213012','SANTOL',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'095683021321','daniel@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'FACULTY','$2y$10$LhHDrSoNCmxWGf0C2ejlP.gbfADGwPGBWZDN8v/q59edVbRQnNWR2',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2023-01-13 01:31:03','2023-01-13 01:31:03'),
+(16,'Christian','ORNOPIA','CHRISTIAN','SINGCAY','N/A',NULL,NULL,'MALE',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'123473',NULL,'1042','104215','104215017','CACAO',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0968302133','christian@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'FACULTY','$2y$10$LPNM.9VZHLCAK/A.6qFU6uU/ikMnlrVP3eqLu/KhWwRe1eelTqw0q',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2023-01-13 01:32:57','2023-01-13 01:32:57'),
+(17,'Mayvel','SAQUIN','MAYVEL','EGOS','N/A',NULL,NULL,'FEMALE',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'123451',NULL,'1042','104216','104216021','MALOLOY-ON',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0968390213','mayvel@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'FACULTY','$2y$10$EDD2cHx1WgxSFXnoNyWv9ekiUdy3/SHKxas29.OI/Sc/v4alC2sHS',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2023-01-13 01:35:34','2023-01-13 01:35:34'),
+(18,'Cristy','SAMBOLOT','CRISTY','BUNSOCAN','N/A',NULL,NULL,'FEMALE',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'123458',NULL,'1042','104208','104208015','MAKUGIHON',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'09683021354','cristy@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'FACULTY','$2y$10$3yPLvr7LmowVf.EgtalhH.biKWGhFWPbY0S/2qd8ijE9oGXxXUN0K',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2023-01-13 01:37:17','2023-01-13 01:37:17'),
+(19,'Hannah','PANA','HANNAH','PAN','N/A',NULL,NULL,'FEMALE',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'123475',NULL,'1042','104208','104208016','DANCING LADY',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'09683021354','hannah@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'FACULTY','$2y$10$1FEK8ilvF2IkeqqaKF0SBu2cO8T2fzyoc0Xxbu6muhm2eB4MuYmna',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2023-01-13 01:46:39','2023-01-13 01:46:39'),
+(20,'angel','MANSUETO','LEDA','','',NULL,NULL,'MALE',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'TEACHER1122331',NULL,'0314','031414','031414004','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0916546752446','leda@dev.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'FACULTY','$2y$10$lVHUn1bSXrUAWLjAFIALA.N4dLkHdLUTCpXijgO.YS6dSbpPQsdgG',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2023-01-13 01:51:46','2023-01-13 01:51:46'),
+(21,'Cristian','HAMMAD','CRISTIAN','MARIO','JR.',NULL,NULL,'MALE','MANINGCOL SAMPLE SCHOOL',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'123451',NULL,'1042','104214','104214018','CACAO',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'09876543211','cristian@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'FACULTY','$2y$10$4T391avB9pD9Ink/L4bC2.BACVP7t22G6v7bgxmbKtf/hKGMy1I2O',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2023-01-13 02:31:01','2023-01-13 02:31:01'),
+(22,'DepEd','DEP','ED01','DEPART','N/A','1970-01-01','CEBU CITY','MALE',NULL,'SINGLE',NULL,'5\'5','63','A','Government Service Insurance System','Pag Ibig Plus Loyalty Card','PHILHEALTH INSURANCE CARD IS A VALID GOVERNMENT ID www.philhealth.gov.ph PHILHEALTH INSURANCE CARD','04-1413324-8','None','123452','FILIPINO','1042','104210','104210042','STREET ANTON','PUROK ROSES','4532','0215','021511','021511034','PUROK ROSES','335567','7834','021-345-6798','09876543212','DepEd@gmail.com',NULL,'','','','',NULL,'JOLLIBEE','CACAO','0986-123-5687','AGUSTINE','MARIANO','LUKAS','JR.','AGUSTINE','MARIANETTA','PUROLA','NONE','DEPED OFFICIAL','$2y$10$UAkRLllY.RSWPXjpsZhMx.hxg8h7Mo7mpzMplu.bS/VR8rQpBfmzq',NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2023-01-13 02:35:34','2023-01-16 11:13:49');
+
+/*Table structure for table `voluntary_works` */
+
+DROP TABLE IF EXISTS `voluntary_works`;
+
+CREATE TABLE `voluntary_works` (
+  `voluntary_work_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) unsigned NOT NULL,
+  `name_address_org` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `work_from` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `work_to` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `no_hours` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nature_work` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`voluntary_work_id`),
+  KEY `voluntary_works_user_id_foreign` (`user_id`),
+  CONSTRAINT `voluntary_works_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `voluntary_works` */
+
+insert  into `voluntary_works`(`voluntary_work_id`,`user_id`,`name_address_org`,`work_from`,`work_to`,`no_hours`,`nature_work`,`created_at`,`updated_at`) values 
+(1,2,'VINZ ITECH','2010','2022','8/day','TECHINICIAN','2022-11-30 17:04:28','2022-11-30 17:04:28'),
+(2,2,'OJT CEBU','2014','2015','100','SEO OFFICER 1','2022-11-30 19:05:16','2022-11-30 19:05:16'),
+(3,22,'DE LA SALLE UNIVERSITY','05/12/2022','5/15/2023','8 hourse','PROCEDURAL WORK','2023-01-13 03:58:44','2023-01-13 03:58:44');
+
+/*Table structure for table `work_experiences` */
+
+DROP TABLE IF EXISTS `work_experiences`;
+
+CREATE TABLE `work_experiences` (
+  `work_ex_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) unsigned NOT NULL,
+  `work_ex_from` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `work_ex_to` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `position_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `department_agency` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `salary` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pay_grade` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status_appointment` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_govt` tinyint(4) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`work_ex_id`),
+  KEY `work_experiences_user_id_foreign` (`user_id`),
+  CONSTRAINT `work_experiences_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `work_experiences` */
+
+insert  into `work_experiences`(`work_ex_id`,`user_id`,`work_ex_from`,`work_ex_to`,`position_title`,`department_agency`,`salary`,`pay_grade`,`status_appointment`,`is_govt`,`created_at`,`updated_at`) values 
+(1,2,'2020-11-30','2022-11-30','PROGRAMMER','ACFI','13000','SAMPLE','REGULAR',1,'2022-11-30 14:40:04','2022-11-30 14:44:56'),
+(2,22,'2023-01-03','2027-01-13','VICE PRESIDENT','DE LA SALLE UNIVERSITY','40000','25000','SUBSTITUTE, OR PROVISIONAL',1,'2023-01-13 03:51:31','2023-01-13 03:51:31');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

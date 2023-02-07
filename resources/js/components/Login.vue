@@ -3,29 +3,26 @@
         <div class="login">
 
             <form @submit.prevent="submit">
-                <div class="box">
-                    <div class="title is-4 is-centered">
-                        LOGIN TO TRABAHUNT
+                <div class="card">
+                    <div class="title is-4">
+                        Sign In
+                        <b-icon icon="login" class="is-large"></b-icon>
                     </div>
-                    <hr class="hr-line">
+                    <hr>
 
                     <div class="panel-body">
-                        <b-field class="login-input" label="Username" label-position="on-border"
+                        <b-field label="Username" label-position="on-border"
                             :type="this.errors.username ? 'is-danger':''"
                             :message="this.errors.username ? this.errors.username[0] : ''">
-                            <b-input type="text" icon="account" rounded v-model="fields.username" placeholder="Username" />
+                            <b-input type="text" v-model="fields.username" placeholder="Username" />
                         </b-field>
 
                         <b-field label="Password" label-position="on-border">
-                            <b-input type="password" rounded icon="lock" v-model="fields.password" password-reveal placeholder="Password" />
+                            <b-input type="password" v-model="fields.password" password-reveal placeholder="Password" />
                         </b-field>
 
-                        <div class="buttons is-centered mt-4">
-                            <button class="button is-primary is-rounded">LOGIN</button>
-
-                        </div>
-                        <div style="text-align: center;">
-                            <a href="/sign-up">Register here</a>
+                        <div class="buttons">
+                            <button class="button is-rounded is-fullwidth is-primary">LOGIN</button>
                         </div>
                     </div>
                 </div>
@@ -53,18 +50,21 @@ export default {
         submit: function(){
             axios.post('/login', this.fields).then(res=>{
                 console.log(res.data)
-                if(res.data.role === 'ADMINISTRATOR' || res.data.role === 'STAFF'){
-                    window.location = '/admin/home';
+                if(res.data.role === 'ADMINISTRATOR'){
+                    window.location = '/admin-home';
                 }
-
-                if(res.data.role === 'USER' || res.data.role === 'EMPLOYEE'){
-                    window.location = '/';
+                if(res.data.role === 'FACULTY'){
+                    window.location = '/faculty/home';
                 }
-
-                if(res.data.role === 'EMPLOYER'){
-                    window.location = '/employer/dashboard';
+                if(res.data.role === 'HRLD'){
+                    window.location = '/hrld/home';
                 }
-
+                if(res.data.role === 'CID'){
+                    window.location = '/cid/home';
+                }
+                if(res.data.role === 'DEPED OFFICIAL'){
+                    window.location = '/deped/home';
+                }
                //window.location = '/dashboard';
             }).catch(err=>{
                 if(err.response.status === 422){
@@ -87,22 +87,26 @@ export default {
 
     .login{
         width: 500px;
-
     }
 
     .box{
-        padding: 50px 25px 50px 25px;
         border: 1px solid rgb(223, 223, 223);
-        border: 1px solid green;
     }
 
-    .hr-line{
-        background-color: green;
+    .card {
+        background: rgb(255, 255, 255);
+        border-radius: 0.4em;
+        box-shadow: 0.3em 0.3em 0.7em #00000015;
+        transition: border 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border: rgb(250, 250, 250) 0.2em solid;
+        padding: 25px;
     }
 
-    .login-input{
-        margin-bottom: 25px;
+    .card:hover {
+        border: #006fff 0.2em solid;
     }
+
+
 
 
 </style>

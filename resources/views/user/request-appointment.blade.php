@@ -1,4 +1,4 @@
-@extends('layouts.app-employee.blade.php')
+@extends('layouts.user-layout')
 
 @section('content')
     <request-appointment></request-appointment>

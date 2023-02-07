@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Administrator;
 
 use App\Models\Office;
+use App\Models\OtherInformation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -28,7 +29,6 @@ class UserController extends Controller
         $sort = explode('.', $req->sort_by);
 
         $users = User::where('lname', 'like', $req->lname . '%')
-            ->where('role', 'like', $req->role . '%')
             ->orderBy($sort[0], $sort[1])
             ->paginate($req->perpage);
 
@@ -37,6 +37,27 @@ class UserController extends Controller
 
     public function show($id){
         return User::find($id);
+    }
+
+    public function storeOtherInfo(Request $req, $id){
+
+        $validate = $req->validate([
+            'skill_hobbies' => ['required']
+        ]);
+
+        OtherInformation::updateOrCreate([
+            'user_id' => $id,
+            'skill_hobbies' => $req->skill_hobbies,
+        ],[
+            'user_id' => $id,
+            'skill_hobbies' => $req->skill_hobbies,
+            'non_academic_distinction' => $req->non_academic_distinction,
+            'member_association' => $req->member_association
+        ]);
+
+        return response()->json([
+            'status' => 'saved'
+        ]);
     }
 
     public function store(Request $req){
@@ -51,9 +72,9 @@ class UserController extends Controller
             'email' => ['required', 'unique:users'],
             'password' => ['required', 'string', 'confirmed'],
             'role' => ['required', 'string'],
-            'province' => ['required', 'string'],
-            'city' => ['required', 'string'],
-            'barangay' => ['required', 'string'],
+            'res_province' => ['required', 'string'],
+            'res_city' => ['required', 'string'],
+            'res_barangay' => ['required', 'string'],
         ]);
 
         User::create([
@@ -67,10 +88,10 @@ class UserController extends Controller
             'email' => $req->email,
             'contact_no' => $req->contact_no,
             'role' => $req->role,
-            'province' => $req->province,
-            'city' => $req->city,
-            'barangay' => $req->barangay,
-            'street' => strtoupper($req->street)
+            'res_province' => $req->res_province,
+            'res_city' => $req->res_city,
+            'res_barangay' => $req->res_barangay,
+            'res_street' => strtoupper($req->res_street)
         ]);
 
         return response()->json([
@@ -79,6 +100,8 @@ class UserController extends Controller
     }
 
     public function update(Request $req, $id){
+
+
         $validate = $req->validate([
             'username' => ['required', 'max:50', 'unique:users,username,'.$id.',user_id'],
             'lname' => ['required', 'string', 'max:100'],
@@ -86,9 +109,9 @@ class UserController extends Controller
             'sex' => ['required', 'string', 'max:20'],
             'email' => ['required', 'unique:users,email,'.$id.',user_id'],
             'role' => ['required', 'string'],
-            'province' => ['required', 'string'],
-            'city' => ['required', 'string'],
-            'barangay' => ['required', 'string'],
+            'res_province' => ['required', 'string'],
+            'res_city' => ['required', 'string'],
+            'res_barangay' => ['required', 'string'],
         ]);
 
         $data = User::find($id);
@@ -98,12 +121,11 @@ class UserController extends Controller
         $data->mname = strtoupper($req->mname);
         $data->sex = $req->sex;
         $data->email = $req->email;
-        $data->contact_no = $req->contact_no;
         $data->role = $req->role;
-        $data->province = $req->province;
-        $data->city = $req->city;
-        $data->barangay = $req->barangay;
-        $data->street = strtoupper($req->street);
+        $data->res_province = $req->res_province;
+        $data->res_city = $req->res_city;
+        $data->res_barangay = $req->res_barangay;
+        $data->res_street = strtoupper($req->res_street);
         $data->save();
 
         return response()->json([
@@ -112,18 +134,20 @@ class UserController extends Controller
     }
 
 
+    public function getBrowseDentist(Request $req){
+
+        $data = User::where('lname', 'like', $req->lname . '%')
+            ->where('fname', 'like', $req->fname . '%')
+            ->where('role', 'DENTIST')
+            ->paginate($req->perpage);
+        return $data;
+    }
 
     public function resetPassword(Request $req, $id){
 
         $req->validate([
             'password' => ['required', 'confirmed']
         ]);
-
-//        if($req->password != $req->password_confirmation){
-//            return response()->json([
-//                'status' => 'not_matched'
-//            ], 422);
-//        }
 
         $user = User::find($id);
         $user->password = Hash::make($req->password);
