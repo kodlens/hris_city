@@ -1,8 +1,8 @@
 <template>
-    <b-navbar class="is-dark">
+    <b-navbar>
         <template #brand>
             <b-navbar-item>
-                <h1 class="title is-4" style="color: white;">HR LEARNING & DEV</h1>
+                <h1 class="ml-5" style="font-weight: bolder; font-size: 2em;">HRIS</h1>
             </b-navbar-item>
         </template>
 
@@ -20,18 +20,7 @@
                 MY APPOINTMENT
             </b-navbar-item>
             <b-navbar-item tag="div">
-                <div v-if="!currentLogin" class="buttons">
-                    <a class="button is-primary" href="/sign-up">
-                        <strong>Register</strong>
-                    </a>
-                    <a class="button is-success is-outlined" href="/login">
-                        Log in
-                    </a>
-                </div>
-                <div v-else class="buttons">
-                    <b-button label="LOGOUT" icon-left="logout" @click="logout">
-                    </b-button>
-                </div>
+               
             </b-navbar-item>
         </template>
     </b-navbar>

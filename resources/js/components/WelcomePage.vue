@@ -1,8 +1,33 @@
 <template>
     <div>
-        <div class="my-hero-container">
-            <div class="hero-text">
-                <h1 style="font-size:50px">LEARNING DEVELOPMENT SYSTEM</h1>
+       
+        <div class="w-hero">
+
+        </div>
+
+        <div class="welcome-card-container">
+            <div class="welcome-card">
+                <div style="font-weight: bold; font-size: 5em;">HRIS</div>
+                <p class="subtitle">Human Resource Information System</p>
+            </div>
+
+            <div class="welcome-card">
+                <div>
+                    <div class="subtitle has-text-weight-bold mb-5 is-size-4">
+                        <blockquote>
+                            Setup your account and manage your own information in an easy way.
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="welcome-buttons">
+                  
+                    <b-button class="w-button is-outlined is-info" tag="a" href="/sign-up">
+                        <span style="font-weight: bold;">SIGN UP</span>
+                    </b-button>
+                    <b-button class="w-button is-outlined is-primary" tag="a" href="/login">
+                        <span style="font-weight: bold;">LOGIN</span>
+                    </b-button>
+                </div>
             </div>
         </div>
 
@@ -36,25 +61,34 @@ export default {
 
 <style scoped>
 
-    .my-hero-container{
-        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/img/banner.jpg");
-        /* background-image: url("/img/banner.jpg"); */
-        height: 100vh;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        position: relative;
+    .w-hero{
+        height: 500px;
+        background:  #f17c2e;
     }
 
-    .hero-text {
-        text-align: center;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: white;
+    .welcome-card-container{
+        display: flex;
+        margin-top: -250px;
+        gap: 10px;
+        justify-content: center;
     }
 
+    .welcome-card{
+        background: white;
+        padding: 20px;
+        height: 500px;
+        width: 600px;
+    }
+
+    .welcome-buttons{
+        display: flex;
+        box-sizing: border-box;
+    }
+
+    .welcome-buttons > .w-button{
+          width: 100%;
+        margin: 5px;
+    }
 
     @media only screen and (max-width: 1024px) {
 

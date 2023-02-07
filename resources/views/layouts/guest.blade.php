@@ -22,9 +22,9 @@
 <body>
     <div id="app">
         @auth
-            <user-navbar prop-user='@json(auth()->user())'></user-navbar>
+            <guest-navbar prop-user='@json(auth()->user())'></guest-navbar>
         @else
-            <user-navbar prop-user=''></user-navbar>
+            <guest-navbar prop-user=''></guest-navbar>
         @endauth
 
         <div>

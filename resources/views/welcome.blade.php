@@ -1,4 +1,4 @@
-@extends('layouts.user')
+@extends('layouts.guest')
 
 @section('content')
     <welcome-page></welcome-page>
