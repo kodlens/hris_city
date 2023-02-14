@@ -47,7 +47,7 @@ class SignUpController extends Controller
             'lname' => strtoupper($req->lname),
             'fname' => strtoupper($req->fname),
             'mname' => strtoupper($req->mname),
-            'suffix' => strtoupper($req->suffix),
+            'extension' => strtoupper($req->extension),
             'sex' => $req->sex,
             'school_assigned' => strtoupper($req->school_assigned),
             'contact_no' => $req->contact_no,

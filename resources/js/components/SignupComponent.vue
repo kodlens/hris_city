@@ -85,8 +85,8 @@
                         </div>
 
                         <div class="column">
-                            <b-field label="Suffix" label-position="on-border">
-                                <b-input type="text" v-model="fields.suffix" placeholder="Suffix"></b-input>
+                            <b-field label="Extension" label-position="on-border">
+                                <b-input type="text" v-model="fields.extension" placeholder="Extension"></b-input>
                             </b-field>
                         </div>
 

@@ -16,10 +16,11 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id('user_id');
             $table->string('username')->unique();
+            $table->string('password');
             $table->string('lname');
             $table->string('fname');
             $table->string('mname')->nullable();
-            $table->string('suffix')->nullable();
+            $table->string('extension')->nullable();
             $table->date('date_birth')->nullable();
             $table->string('place_birth')->nullable();
 
@@ -81,7 +82,49 @@ class CreateUsersTable extends Migration
 
             $table->string('role')->nullable();
 
-            $table->string('password');
+
+            $table->tinyInteger('is_verified')->default(0);
+
+            $table->tinyInteger('related_with_third_degree')->default(0);
+            $table->tinyInteger('related_with_fourth_degree')->default(0);
+            $table->string('related_with_fourth_degree_yes')->nullable();
+
+            $table->tinyInteger('is_guilty_administrative_offense')->default(0);
+            $table->string('is_guilty_administrative_offense_yes')->nullable();
+
+
+            $table->tinyInteger('is_criminally_charge')->default(0);
+            $table->string('is_criminally_charge_yes')->nullable();
+
+            $table->string('date_filed')->nullable();
+            $table->string('case_status')->nullable();
+
+            $table->tinyInteger('is_convicted')->default(0);
+            $table->string('is_convicted_yes')->nullable();
+
+            $table->tinyInteger('is_separated')->default(0);
+            $table->string('is_separated_yes_details')->nullable();
+
+            $table->tinyInteger('is_candidate_election')->default(0);
+            $table->string('is_candidate_election_yes')->nullable();
+            
+
+            $table->tinyInteger('is_resigned')->default(0);
+            $table->string('is_resigned_yes')->nullable();
+
+            $table->tinyInteger('is_immigrant')->default(0);
+            $table->string('is_immigrant_yes')->nullable();
+
+            $table->tinyInteger('is_indigenous')->default(0);
+            $table->string('is_indigenous_yes')->nullable();
+
+            $table->tinyInteger('is_disable')->default(0);
+            $table->string('is_disable_id_no')->nullable();
+
+            $table->tinyInteger('is_solo_parent')->default(0);
+            $table->string('is_solo_parent_yes')->nullable();
+
+
             $table->rememberToken();
             $table->timestamps();
         });
