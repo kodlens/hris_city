@@ -4,6 +4,9 @@
 @import 'variables';
 @import '~@mdi/font/css/materialdesignicons.css';
 //ref website -> https://materialdesignicons.com/
+//https://pictogrammers.com/library/mdi/
+
+
 //npm i @mdi/font
 // Bootstrap
 //@import '~bootstrap/scss/bootstrap';
@@ -251,6 +254,8 @@ h2 span {
     size: 8.5in 13in;
     
     }
+
+@import "custom.scss";
 
 @import "~buefy/src/scss/buefy";
 // Import only what you need from Bulma

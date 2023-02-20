@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Faculty;
 
 use App\Http\Controllers\Controller;
+use App\Models\Children;
 use Illuminate\Http\Request;
-use App\Models\EducationalBackground;
 
-
-class FacultyEducationalBackgroundController extends Controller
+class UserChildController extends Controller
 {
     //
 
@@ -15,13 +14,11 @@ class FacultyEducationalBackgroundController extends Controller
         $this->middleware('auth');
     }
 
-
     public function destroy($id){
-        EducationalBackground::destroy($id);
+        Children::destroy($id);
+
         return response()->json([
             'status' => 'deleted'
         ],200);
     }
-
-
 }

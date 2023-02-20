@@ -124,7 +124,6 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('is_solo_parent')->default(0);
             $table->string('is_solo_parent_yes')->nullable();
 
-
             $table->rememberToken();
             $table->timestamps();
         });

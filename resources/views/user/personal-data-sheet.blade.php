@@ -1,4 +1,4 @@
-@extends('layouts.faculty')
+@extends('layouts.user')
 
 @section('content')
     <personal-data-sheet prop-civils='@json($civils)'

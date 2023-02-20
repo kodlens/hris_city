@@ -21,7 +21,7 @@
                             <b-field label="Agency No. (Id No.)" label-position="on-border"
                                         :type="this.errors.agency_idno ? 'is-danger':''"
                                         :message="this.errors.agency_idno ? this.errors.agency_idno[0] : ''">
-                                <b-input type="text" v-model="fields.agency_idno" icon="account" placeholder="Agency No."></b-input>
+                                <b-input type="text" v-model="fields.agency_idno" icon="id-card" placeholder="Agency No."></b-input>
                             </b-field>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                             <b-field label="Contact No." label-position="on-border"
                                         :type="this.errors.contact_no ? 'is-danger':''"
                                         :message="this.errors.contact_no ? this.errors.contact_no[0] : ''">
-                                <b-input type="text" v-model="fields.contact_no" icon=""></b-input>
+                                <b-input type="text" v-model="fields.contact_no" icon="cellphone"></b-input>
                             </b-field>
                         </div>
                     </div>
@@ -86,7 +86,9 @@
 
                         <div class="column">
                             <b-field label="Extension" label-position="on-border">
-                                <b-input type="text" v-model="fields.extension" placeholder="Extension"></b-input>
+                                <b-input type="text" v-model="fields.extension" 
+                                    icon="account"
+                                    placeholder="Extension"></b-input>
                             </b-field>
                         </div>
 
@@ -109,7 +111,8 @@
                             <b-field label="Province" expanded label-position="on-border"
                                         :type="this.errors.res_province ? 'is-danger':''"
                                         :message="this.errors.res_province ? this.errors.res_province[0] : ''">
-                                <b-select v-model="fields.res_province" expanded placeholder="Province" @input="loadCity">
+                                <b-select v-model="fields.res_province" expanded placeholder="Province" 
+                                    icon="map-marker" @input="loadCity">
                                     <option v-for="(item, index) in provinces" :key="index" :value="item.provCode">{{ item.provDesc }}</option>
                                 </b-select>
                             </b-field>
@@ -118,7 +121,8 @@
                             <b-field label="City/Municipality" expanded label-position="on-border"
                                         :type="this.errors.res_city ? 'is-danger':''"
                                         :message="this.errors.res_city ? this.errors.res_city[0] : ''">
-                                <b-select expanded v-model="fields.res_city" placeholder="City" @input="loadBarangay">
+                                <b-select expanded v-model="fields.res_city"
+                                    icon="map-marker" placeholder="City" @input="loadBarangay">
                                     <option v-for="(item, index) in cities" :key="index" :value="item.citymunCode">{{ item.citymunDesc }}</option>
                                 </b-select>
                             </b-field>
@@ -130,14 +134,16 @@
                             <b-field label="Barangay" expanded label-position="on-border"
                                         :type="this.errors.res_barangay ? 'is-danger':''"
                                         :message="this.errors.res_barangay ? this.errors.res_barangay[0] : ''">
-                                <b-select v-model="fields.res_barangay" expanded placeholder="Barangay">
+                                <b-select v-model="fields.res_barangay" expanded 
+                                    icon="map-marker" placeholder="Barangay">
                                     <option v-for="(item, index) in barangays" :key="index" :value="item.brgyCode">{{ item.brgyDesc }}</option>
                                 </b-select>
                             </b-field>
                         </div>
                         <div class="column">
                             <b-field label="Street" label-position="on-border">
-                                <b-input type="text" v-model="fields.res_street"></b-input>
+                                <b-input type="text" v-model="fields.res_street"
+                                    icon="google-street-view"></b-input>
                             </b-field>
                         </div>
                     </div>

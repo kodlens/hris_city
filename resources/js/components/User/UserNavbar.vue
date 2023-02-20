@@ -5,7 +5,7 @@
         <b-navbar>
             <template #brand>
                 <b-navbar-item>
-                    <h1 class="title is-4">TEACHER PANEL</h1>
+                    <h1 class="title has-text-weight-bold is-4">PANEL</h1>
                 </b-navbar-item>
             </template>
 
@@ -15,17 +15,17 @@
 
             <template #end>
 
-                <b-navbar-item href="/faculty/home">
+                <b-navbar-item href="/home">
                     Home
                 </b-navbar-item>
 
-                <b-navbar-item href="/faculty/personal-data-sheet">
+                <b-navbar-item href="/personal-data-sheet">
                     Personal Data Sheet
                 </b-navbar-item>
 
-                <b-navbar-item href="/faculty/trainings-interventions">
+                <!-- <b-navbar-item href="/faculty/trainings-interventions">
                     Tranings / Interventions
-                </b-navbar-item>
+                </b-navbar-item> -->
 
 
                 <b-navbar-dropdown :label="showName">

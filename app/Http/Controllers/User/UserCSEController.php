@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\CivilServiceEligibility;
 use Illuminate\Http\Request;
 
-class FacultyCSEController extends Controller
+class UserCSEController extends Controller
 {
     //
     public function __construct(){

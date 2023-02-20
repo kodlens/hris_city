@@ -469,7 +469,7 @@
                             </div>
 
                             <h2><span>CHILDREN</span></h2>
-                            <div v-for="(item, k) in this.fields.children" :key="`child${k}`">
+                            <div class="table-form-container" v-for="(item, k) in this.fields.children" :key="`child${k}`">
                                 <div class="columns">
                                     <div class="column">
                                         <b-field label="Fullname" label-position="on-border">
@@ -480,10 +480,15 @@
                                         <b-field label="Date of Birth (mm/dd/yyyy)" label-position="on-border">
                                             <b-datepicker editable v-model="item.date_birth"
                                                           placeholder="Date Birth" required> </b-datepicker>
-                                            <p class="control">
-                                                <b-button @click="removeChild(k)" v-show="k || ( !k && fields.children.length > 0)" type="is-danger" icon-left="delete"></b-button>
-                                            </p>
+                                            
                                         </b-field>
+                                    </div>
+                                    <div class="column">
+                                        <div class="buttons is-right">
+                                            <b-button @click="removeChild(k)" v-show="k || ( !k && fields.children.length > 0)" 
+                                                type="is-danger" icon-left="delete"
+                                                class="is-small"></b-button>
+                                        </div>
                                     </div>
                                 </div><!--cols-->
                             </div>
@@ -498,7 +503,7 @@
                             </div>
                             <div class="columns">
                                 <div class="column">
-                                    <div class="w-separator" v-for="(item, k) in fields.educational_backgrounds" :key="`ed${k}`">
+                                    <div class="table-form-container" v-for="(item, k) in fields.educational_backgrounds" :key="`ed${k}`">
                                         <div class="columns">
                                             <div class="column">
                                                 <b-field label="Level" expanded label-position="on-border">
@@ -545,13 +550,21 @@
                                         <div class="columns">
                                             <div class="column">
                                                 <b-field label="Scholarship" expanded label-position="on-border">
-                                                    <b-input type="text" expanded v-model="item.scholarship" placeholder="Scholarship"></b-input>
-                                                    <p class="control">
-                                                        <b-button @click="removeEducationalBackground(k)" v-show="k || ( !k && fields.educational_backgrounds.length > 0)" type="is-danger" icon-left="delete"></b-button>
-                                                    </p>
+                                                    <b-input type="text" v-model="item.scholarship" placeholder="Scholarship"></b-input>
                                                 </b-field>
                                             </div>
                                         </div>
+                                        <div class="columns">
+                                            <div class="column">
+                                                <div class="buttons is-right">
+                                                    <b-button @click="removeEducationalBackground(k)" 
+                                                        v-show="k || ( !k && fields.educational_backgrounds.length > 0)"
+                                                        class="is-small"
+                                                        type="is-danger" icon-left="delete"></b-button>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </div>
                                     <div class="buttons">
                                         <b-button @click="addEducationalBackground" type="is-success mb-4 mt-4" class="is-small" icon-left="plus">ADD</b-button>
@@ -566,7 +579,7 @@
                             <div class="separator">Civil Sevice Eligibility</div>
                             <div class="columns">
                                 <div class="column">
-                                    <div class="w-separator" v-for="(item, k) in this.fields.eligibilities" :key="`eligible${k}`">
+                                    <div class="table-form-container" v-for="(item, k) in this.fields.eligibilities" :key="`eligible${k}`">
                                         <div class="columns">
                                             <div class="column">
                                                 <b-field label="Fullname" label-position="on-border">
@@ -606,11 +619,16 @@
                                             <div class="column">
                                                 <b-field label="License Validity" expanded label-position="on-border">
                                                     <b-input type="text" expanded v-model="item.license_validity" placeholder="License Validity"></b-input>
-                                                    <p class="control">
-                                                        <b-button @click="removeEligibility(k)" v-show="k || ( !k && fields.eligibilities.length > 0)" type="is-danger" icon-left="delete"></b-button>
-                                                    </p>
                                                 </b-field>
                                             </div>
+                                        </div>
+
+                                        <div class="buttons is-right">
+                                            <b-button @click="removeEligibility(k)" 
+                                                v-show="k || ( !k && fields.eligibilities.length > 0)"
+                                                class="is-small"
+                                                type="is-danger" 
+                                                icon-left="delete"></b-button>
                                         </div>
                                     </div>
                                     <div class="buttons">
@@ -623,7 +641,7 @@
                             <div class="separator">Work Experience</div>
                             <div class="columns">
                                 <div class="column">
-                                    <div class="w-separator" v-for="(item, k) in fields.work_experiences" :key="`work${k}`">
+                                    <div class="table-form-container" v-for="(item, k) in fields.work_experiences" :key="`work${k}`">
                                         <div class="columns">
                                             <div class="column">
                                                 <b-field label="Experience From/To" label-position="on-border">
@@ -668,16 +686,17 @@
                                                         <option value="1">YES</option>
                                                         <option value="0">NO</option>
                                                     </b-select>
-                                                    <p class="control">
-                                                        <b-button @click="removeWorkExperience(k)" v-show="k || ( !k && fields.work_experiences.length > 0)"
-                                                            type="is-danger"
-                                                            icon-left="delete"></b-button>
-                                                    </p>
                                                 </b-field>
-
                                             </div>
                                         </div>
 
+                                        <div class="buttons is-right">
+                                            <b-button @click="removeWorkExperience(k)" 
+                                                v-show="k || ( !k && fields.work_experiences.length > 0)"
+                                                type="is-danger"
+                                                class="is-small"
+                                                icon-left="delete"></b-button>
+                                        </div>
                                     </div>
                                     <div class="buttons">
                                         <b-button @click="addWorkExperience" type="is-success mb-4 mt-4" class="is-small" icon-left="plus">ADD</b-button>
@@ -691,7 +710,7 @@
                             <div class="separator">
                                 Voluntary Work or Involvment in Civic / Non-Gov't / People / Voluntary Org
                             </div>
-                            <div class="w-separator" v-for="(item, k) in fields.voluntary_works" :key="`voluntary${k}`">
+                            <div class="table-form-container" v-for="(item, k) in fields.voluntary_works" :key="`voluntary${k}`">
                                 <div class="columns">
                                     <div class="column">
                                         <b-field label="Name & Address of Organization" label-position="on-border">
@@ -717,13 +736,15 @@
                                     <div class="column">
                                         <b-field label="Position/Nature of Work" expanded label-position="on-border">
                                             <b-input type="text" v-model="item.nature_work" expanded placeholder="Position/Nature of Works"></b-input>
-                                            <p class="control">
-                                                <b-button @click="removeVoluntaryWork(k)" v-show="k || ( !k && fields.work_experiences.length > 0)"
-                                                    type="is-danger"
-                                                    icon-left="delete"></b-button>
-                                            </p>
                                         </b-field>
                                     </div>
+                                </div>
+                                <div class="buttons is-right">
+                                    <b-button @click="removeVoluntaryWork(k)" 
+                                        v-show="k || ( !k && fields.work_experiences.length > 0)"
+                                        type="is-danger"
+                                        class="is-small"
+                                        icon-left="delete"></b-button>
                                 </div>
                             </div>
 
@@ -731,14 +752,12 @@
                                 <b-button @click="addVoluntaryWork" type="is-success mb-4 mt-4" class="is-small" icon-left="plus">ADD</b-button>
                             </div>
 
-
-
                             <!-- Learning Dev -->
                             <div class="separator">
                                 Learning and Development Inventions / Trainings / Programs Attended
                             </div>
 
-                            <div class="w-separator" v-for="(item, index) in fields.learning_developments" :key="`ld${index}`">
+                            <div class="table-form-container" v-for="(item, index) in fields.learning_developments" :key="`ld${index}`">
                                 <div class="columns">
                                     <div class="column">
                                         <b-field label="Title of Learning Development (Write Full)" label-position="on-border">
@@ -764,35 +783,32 @@
 
                                     <div class="column">
                                         <b-field label="Type Learning Development" label-position="on-border">
-                                            <b-select v-model="item.type_ld"
-                                                      placeholder="Type Learning Development"
-                                                      expanded>
-                                                <option v-for="(i, ix) in learning_developments" :key="ix"
-                                                        :value="i.ld_type">
-                                                    {{ i.ld_type }}
-                                                </option>
-                                            </b-select>
+                                            <b-input type="text" v-model="item.type_ld"
+                                                placeholder="Type Learning Development">
+                                            </b-input>
                                         </b-field>
-
                                     </div>
                                     <div class="column">
                                         <b-field label="Conducted / Sponsored By" expanded label-position="on-border">
                                             <b-input type="text" v-model="item.sponsored_by" expanded placeholder="Conducted / Sponsored By"></b-input>
-
                                         </b-field>
                                     </div>
                                 </div>
 
                                 <div class="buttons is-right">
-                                    <b-button @click="removeLearningDevelopment(index)" v-show="index || ( !index && fields.learning_developments.length > 0)"
-                                              type="is-danger"
-                                              icon-left="delete">
+                                    <b-button @click="removeLearningDevelopment(index)" 
+                                        v-show="index || ( !index && fields.learning_developments.length > 0)"
+                                        class="is-small"
+                                        type="is-danger"
+                                        icon-left="delete">
                                     </b-button>
                                 </div>
                             </div>
 
                             <div class="buttons">
-                                <b-button @click="addLearningDevelopment" type="is-success mb-4 mt-4" class="is-small" icon-left="plus">ADD</b-button>
+                                <b-button @click="addLearningDevelopment" 
+                                    type="is-success mb-4 mt-4" 
+                                    class="is-small" icon-left="plus">ADD</b-button>
                             </div>
 
 
@@ -801,18 +817,13 @@
                                 Other Information
                             </div>
 
-                            <div class="w-separator" v-for="(item, k) in fields.other_informations" :key="`info${k}`">
+                            <div class="table-form-container" v-for="(item, k) in fields.other_informations" :key="`info${k}`">
                                 <div class="columns">
                                     <div class="column">
                                         <b-field label="Specialization" label-position="on-border">
-                                            <b-select v-model="item.skill_hobbies"
-                                                      placeholder="Special Skill & Hobbies"
-                                                      expanded>
-                                                <option v-for="(i, ix) in specializations" :key="ix"
-                                                        :value="i.specialization">
-                                                    {{ i.specialization }}
-                                                </option>
-                                            </b-select>
+                                            <b-input type="text" v-model="item.skill_hobbies"
+                                                placeholder="Special Skill & Hobbies">
+                                            </b-input>
                                         </b-field>
 
 <!--                                        <b-field label="" label-position="on-border">-->
@@ -832,13 +843,16 @@
                                     <div class="column">
                                         <b-field expanded label="Membership in Association / Organization (Write Full)" label-position="on-border">
                                             <b-input type="text" expanded v-model="item.member_association" placeholder="Membership in Association / Organization (Write Full)"></b-input>
-                                            <p class="control">
-                                                <b-button @click="removeOtherInformation(k)" v-show="k || ( !k && fields.other_informations.length > 0)"
-                                                    type="is-danger"
-                                                    icon-left="delete"></b-button>
-                                            </p>
                                         </b-field>
                                     </div>
+                                </div>
+
+                                <div class="buttons is-right">
+                                    <b-button @click="removeOtherInformation(k)" 
+                                        v-show="k || ( !k && fields.other_informations.length > 0)"
+                                        class="is-small"
+                                        type="is-danger"
+                                        icon-left="delete"></b-button>
                                 </div>
                             </div>
                             <div class="buttons">
@@ -1129,10 +1143,20 @@
                         </template>
                     </b-steps>
 
-
-                    <div class="buttons is-right">
-                        <b-button @click="submit" class="button is-primary">Update Information</b-button>
+                    <div class="columns mt-5">
+                        <div class="column">
+                            <div class="buttons is-left">
+                                <b-button @click="printMe" class="button is-primary is-outlined"
+                                    icon-left="printer">Print</b-button>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="buttons is-right">
+                                <b-button @click="submit" class="button is-primary">Update Information</b-button>
+                            </div>
+                        </div>
                     </div>
+                    
 
                 </div> <!--panel-->
 
@@ -1430,7 +1454,7 @@ export default {
         submit(){
 
             //formData.append('fields', this.fields);
-            axios.post('/faculty/personal-data-sheet-update/' + this.user.user_id, this.fields).then(res=>{
+            axios.post('/personal-data-sheet-update/' + this.user.user_id, this.fields).then(res=>{
                 if(res.data.status === 'saved'){
                     this.$buefy.dialog.alert({
                         title: "UPDATED!",
@@ -1505,7 +1529,7 @@ export default {
                     let id = this.fields.educational_backgrounds[index].ed_bg_id;
 
                     if(id > 0){
-                        axios.delete('/faculty/educational-backgrounds/' + id).then(res=>{
+                        axios.delete('/educational-backgrounds/' + id).then(res=>{
                             if(res.data.status === 'deleted'){
                                 this.$buefy.toast.open({
                                     message: `Educational background deleted successfully.`,
@@ -1542,7 +1566,7 @@ export default {
                     let cse_id = this.fields.eligibilities[index].cse_id;
 
                     if(cse_id > 0){
-                        axios.delete('/faculty/eligibilities/' + cse_id).then(res=>{
+                        axios.delete('/eligibilities/' + cse_id).then(res=>{
                             if(res.data.status === 'deleted'){
                                 this.$buefy.toast.open({
                                     message: `Eligibility deleted successfully.`,
@@ -1581,7 +1605,7 @@ export default {
                     let work_ex_id = this.fields.work_experiences[index].cse_id;
 
                     if(work_ex_id > 0){
-                        axios.delete('/faculty/work-experiences/' + work_ex_id).then(res=>{
+                        axios.delete('/work-experiences/' + work_ex_id).then(res=>{
                             if(res.data.status === 'deleted'){
                                 this.$buefy.toast.open({
                                     message: `Work experience deleted successfully.`,
@@ -1617,7 +1641,7 @@ export default {
                     let id = this.fields.voluntary_works[index].voluntary_work_id;
 
                     if(id > 0){
-                        axios.delete('/faculty/voluntary-works/' + id).then(res=>{
+                        axios.delete('/voluntary-works/' + id).then(res=>{
                             if(res.data.status === 'deleted'){
                                 this.$buefy.toast.open({
                                     message: `Deleted successfully.`,
@@ -1656,7 +1680,7 @@ export default {
                     let id = this.fields.learning_developments[index].learning_dev_id;
 
                     if(id > 0){
-                        axios.delete('/faculty/learning-developments/' + id).then(res=>{
+                        axios.delete('/learning-developments/' + id).then(res=>{
                             if(res.data.status === 'deleted'){
                                 this.$buefy.toast.open({
                                     message: `Deleted successfully.`,
@@ -1691,7 +1715,7 @@ export default {
                     let id = this.fields.other_informations[index].other_info_id;
 
                     if(id > 0){
-                        axios.delete('/faculty/other-informations/' + id).then(res=>{
+                        axios.delete('/other-informations/' + id).then(res=>{
                             if(res.data.status === 'deleted'){
                                 this.$buefy.toast.open({
                                     message: `Deleted successfully.`,
@@ -1708,23 +1732,23 @@ export default {
 
 
         //Load
-        loadLearningDevelopments(){
-            axios.get('/get-open-learning-dev-types').then(res=>{
-                this.learning_developments = res.data
-            })
-        },
-        loadSpecializations(){
-            axios.get('/get-open-specializations').then(res=>{
-                this.specializations = res.data
-            })
-        },
+        // loadLearningDevelopments(){
+        //     axios.get('/get-open-learning-dev-types').then(res=>{
+        //         this.learning_developments = res.data
+        //     })
+        // },
+        // loadSpecializations(){
+        //     axios.get('/get-open-specializations').then(res=>{
+        //         this.specializations = res.data
+        //     })
+        // },
 
     },
     mounted() {
         //this.initData();
         this.loadProvince();
-        this.loadLearningDevelopments()
-        this.loadSpecializations()
+        //this.loadLearningDevelopments()
+        //this.loadSpecializations()
     }
 }
 </script>
@@ -1739,18 +1763,7 @@ export default {
     }
 
 
-    .separator{
-        background-color: blue;
-        padding: 5px 5px 5px 15px;
-        font-weight: bold;
-        color: white;
-        margin-bottom: 25px;
-    }
-    .w-separator{
-        margin: 15px 0;
-        border-bottom: 1px solid gray;
-        padding: 15px 0;
-    }
+    
 
 
 /*    dere lang kubia ang panel color*/

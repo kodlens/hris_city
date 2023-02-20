@@ -4,7 +4,7 @@
             <template #brand>
                 <b-navbar-item>
                     <img
-                        src="/img/deped-logo.png"
+                        src="/img/logo.png"
                         alt="Lightweight UI components for Vue.js based on Bulma"
                     >
                 </b-navbar-item>
@@ -15,11 +15,11 @@
                 </b-navbar-item>
 
                 <b-navbar-dropdown label="Setting">
-                    <b-navbar-item href="/learning-dev">
-                        Learning Development
+                    <b-navbar-item href="#">
+                        Link 1
                     </b-navbar-item>
-                    <b-navbar-item href="/specialization">
-                        Specialization
+                    <b-navbar-item href="#">
+                        Link 2
                     </b-navbar-item>
                 </b-navbar-dropdown>
             </template>

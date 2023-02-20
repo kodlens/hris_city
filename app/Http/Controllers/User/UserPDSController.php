@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Faculty;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Children;
@@ -17,17 +17,18 @@ use App\Models\OtherInformation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class FacultyPDSController extends Controller
+class UserPDSController extends Controller
 {
     //
 
     public function __construct(){
         $this->middleware('auth');
-        $this->middleware('faculty');
+        $this->middleware('user');
 
     }
 
     public function index(){
+
         $id = Auth::user()->user_id;
 
         $civils = CivilStatus::all();
@@ -42,12 +43,11 @@ class FacultyPDSController extends Controller
         ])
             ->find($id);
 
-        return view('faculty.personal-data-sheet')
+        return view('user.personal-data-sheet')
             ->with('civils', $civils)
             ->with('citizenships', $citizenships)
             ->with('user', $user);
     }
-
 
 
     public function update(Request $req, $id){

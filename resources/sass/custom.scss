@@ -34,3 +34,41 @@ w-input:valid~label {
     padding: 0 .2em;
     color: #2196f3;
 }
+
+
+
+
+
+
+//my variables
+$orange: rgb(247, 146, 15);
+$gray-header: #888888;
+$table-container-bg-color: #ffece1;
+
+// Custom CSS
+
+//PDS CSS
+.separator{
+    padding: 10px 0 10px 10px;
+    margin: 0 0 15px 0;
+    background-color: $gray-header;
+    color: white;
+    font-weight: bold;
+}
+
+.table-form-container{
+    background-color: $table-container-bg-color;
+    margin: 5px 0;
+    padding: 15px 10px 5px 10px;
+}
+
+
+.table-title{
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    font-size: large;
+    margin: 30px 0;
+    padding: 0 0 15px 0;
+    border-bottom: 1px solid $orange;
+}

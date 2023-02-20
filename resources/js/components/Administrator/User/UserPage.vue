@@ -5,11 +5,11 @@
                 <div class="column is-10">
                     <div class="box">
 
-                        <div class="is-flex mb-2" style="font-size: 20px; font-weight: bold;">LIST OF USER</div>
+                        <div class="table-title">LIST OF USER</div>
 
                         <div class="level">
                             <div class="level-left">
-                                <b-field label="Page">
+                                <b-field label="Page" label-position="on-border">
                                     <b-select v-model="perPage" @input="setPerPage">
                                         <option value="5">5 per page</option>
                                         <option value="10">10 per page</option>
@@ -21,7 +21,7 @@
 
                             <div class="level-right">
                                 <div class="level-item">
-                                    <b-field label="Search">
+                                    <b-field label="Search" label-position="on-border">
                                         <b-input type="text"
                                                  v-model="search.lname" placeholder="Search Lastname"
                                                  @keyup.native.enter="loadAsyncData"/>
@@ -36,8 +36,9 @@
                         </div>
 
 
-                        <div class="buttons mt-3">
-                            <b-button @click="openModal" icon-left="plus" class="is-success">NEW</b-button>
+                        <div class="buttons mt-3 is-right">
+                            <b-button @click="openModal" icon-left="account-plus"
+                                class="is-success is-small">NEW</b-button>
                         </div>
 
 
@@ -234,10 +235,8 @@
                                              :message="this.errors.role ? this.errors.role[0] : ''">
                                         <b-select v-model="fields.role" expanded>
                                             <option value="ADMINISTRATOR">ADMINISTRATOR</option>
-                                            <option value="HRLD">HRLD</option>
-                                            <option value="CID">CID</option>
-                                            <option value="FACULTY">FACULTY</option>
-                                            <option value="DEPED OFFICIAL">DEPED OFFICIAL</option>
+                                            <option value="STAFF">STAFF</option>
+                                            <option value="USER">USER</option>
                                         </b-select>
                                     </b-field>
                                 </div>
