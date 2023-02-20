@@ -1149,8 +1149,8 @@
                     <div class="columns mt-5">
                         <div class="column">
                             <div class="buttons is-left">
-                                <b-button @click="printMe" class="button is-primary is-outlined"
-                                    icon-left="printer">Print</b-button>
+                                <b-button @click="PDSPreview" class="button is-primary is-outlined"
+                                    icon-left="printer">Preview PDS</b-button>
                             </div>
                         </div>
                         <div class="column">
@@ -1733,8 +1733,8 @@ export default {
             });
         },
 
-        printMe(){
-            window.print();
+        PDSPreview(){
+            window.location = '/display-pds/' + this.user.user_id;
         }
 
 

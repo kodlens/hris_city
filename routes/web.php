@@ -123,6 +123,9 @@ Route::delete('/remove-certificate/{id}', [App\Http\Controllers\Faculty\Certific
 
 
 
+//PDS API need user id to generate DPS
+Route::get('/display-pds/{id}', [App\Http\Controllers\PDSController::class, 'index']);
+
 Route::get('/session', function(){
     return Session::all();
 });
