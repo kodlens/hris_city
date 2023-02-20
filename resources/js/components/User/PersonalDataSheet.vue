@@ -309,22 +309,25 @@
                             <div class="columns">
                                 <div class="column">
                                     <b-field label="Tel No."
-                                             :type="this.errors.tel_no ? 'is-danger':''"
-                                             :message="this.errors.tel_no ? this.errors.tel_no[0] : ''">
+                                        label-position="on-border"
+                                        :type="this.errors.tel_no ? 'is-danger':''"
+                                        :message="this.errors.tel_no ? this.errors.tel_no[0] : ''">
                                         <b-input type="text" v-model="fields.tel_no" icon="email" placeholder="Tel No."></b-input>
                                     </b-field>
                                 </div>
                                 <div class="column">
-                                    <b-field label="Contact No."
-                                             :type="this.errors.contact_no ? 'is-danger':''"
-                                             :message="this.errors.contact_no ? this.errors.contact_no[0] : ''">
+                                    <b-field label="Contact No." 
+                                        label-position="on-border"
+                                        :type="this.errors.contact_no ? 'is-danger':''"
+                                        :message="this.errors.contact_no ? this.errors.contact_no[0] : ''">
                                         <b-input type="text" v-model="fields.contact_no" icon=""></b-input>
                                     </b-field>
                                 </div>
                                 <div class="column">
                                     <b-field label="Email"
-                                             :type="this.errors.email ? 'is-danger':''"
-                                             :message="this.errors.email ? this.errors.email[0] : ''">
+                                        label-position="on-border"
+                                        :type="this.errors.email ? 'is-danger':''"
+                                        :message="this.errors.email ? this.errors.email[0] : ''">
                                         <b-input type="email" v-model="fields.email" icon="email"></b-input>
                                     </b-field>
                                 </div>

@@ -9231,6 +9231,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['propCivils', 'propCitizenships', 'propData'],
   data: function data() {
@@ -45085,6 +45088,7 @@ var render = function () {
                             {
                               attrs: {
                                 label: "Tel No.",
+                                "label-position": "on-border",
                                 type: this.errors.tel_no ? "is-danger" : "",
                                 message: this.errors.tel_no
                                   ? this.errors.tel_no[0]
@@ -45122,6 +45126,7 @@ var render = function () {
                             {
                               attrs: {
                                 label: "Contact No.",
+                                "label-position": "on-border",
                                 type: this.errors.contact_no ? "is-danger" : "",
                                 message: this.errors.contact_no
                                   ? this.errors.contact_no[0]
@@ -45155,6 +45160,7 @@ var render = function () {
                             {
                               attrs: {
                                 label: "Email",
+                                "label-position": "on-border",
                                 type: this.errors.email ? "is-danger" : "",
                                 message: this.errors.email
                                   ? this.errors.email[0]
