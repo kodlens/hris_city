@@ -57,18 +57,10 @@ export default {
                     if (res.data.role === "ADMINISTRATOR") {
                         window.location = "/admin-home";
                     }
-                    if (res.data.role === "FACULTY") {
-                        window.location = "/faculty/home";
+                    if (res.data.role === "USER") {
+                        window.location = "/home";
                     }
-                    if (res.data.role === "HRLD") {
-                        window.location = "/hrld/home";
-                    }
-                    if (res.data.role === "CID") {
-                        window.location = "/cid/home";
-                    }
-                    if (res.data.role === "DEPED OFFICIAL") {
-                        window.location = "/deped/home";
-                    }
+                   
                     //window.location = '/dashboard';
                 })
                 .catch((err) => {
