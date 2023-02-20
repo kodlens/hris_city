@@ -1730,6 +1730,10 @@ export default {
             });
         },
 
+        printMe(){
+            window.print();
+        }
+
 
         //Load
         // loadLearningDevelopments(){

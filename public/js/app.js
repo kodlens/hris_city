@@ -9764,6 +9764,9 @@ __webpack_require__.r(__webpack_exports__);
           _this14.fields.other_informations.splice(index, 1);
         }
       });
+    },
+    printMe: function printMe() {
+      window.print();
     } //Load
     // loadLearningDevelopments(){
     //     axios.get('/get-open-learning-dev-types').then(res=>{
