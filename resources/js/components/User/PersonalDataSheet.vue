@@ -52,10 +52,10 @@
                                     </b-field>
                                 </div>
                                 <div class="column">
-                                    <b-field label="Suffix" label-position="on-border"
-                                            :type="this.errors.suffix ? 'is-danger':''"
-                                            :message="this.errors.suffix ? this.errors.suffix[0] : ''">
-                                        <b-input type="text" v-model="fields.suffix" placeholder="Suffix" icon="account"></b-input>
+                                    <b-field label="Extension" label-position="on-border"
+                                            :type="this.errors.extension ? 'is-danger':''"
+                                            :message="this.errors.extension ? this.errors.extension[0] : ''">
+                                        <b-input type="text" v-model="fields.extension" placeholder="Extension" icon="account"></b-input>
                                     </b-field>
                                 </div>
                             </div>
@@ -101,7 +101,7 @@
                                 </div>
                             </div>
 
-                            <div class="columns">
+                            <!-- <div class="columns">
                                 <div class="column">
                                     <b-field label="School Assigned" expanded label-position="on-border"
                                              :type="this.errors.school_assigned ? 'is-danger':''"
@@ -113,7 +113,7 @@
                                         </b-input>
                                     </b-field>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="columns">
                                 <div class="column">
@@ -364,10 +364,10 @@
                                     </b-field>
                                 </div>
                                 <div class="column">
-                                    <b-field label="Spouse Suffix" label-position="on-border"
-                                             :type="this.errors.spouse_suffix ? 'is-danger':''"
-                                             :message="this.errors.spouse_suffix ? this.errors.spouse_suffix[0] : ''">
-                                        <b-input type="text" v-model="fields.spouse_suffix" placeholder="Spouse Suffix" icon="account"></b-input>
+                                    <b-field label="Spouse Extension" label-position="on-border"
+                                             :type="this.errors.spouse_extension ? 'is-danger':''"
+                                             :message="this.errors.spouse_extension ? this.errors.spouse_extension[0] : ''">
+                                        <b-input type="text" v-model="fields.spouse_extension" placeholder="Spouse Extension" icon="account"></b-input>
                                     </b-field>
                                 </div>
                             </div>
@@ -426,10 +426,10 @@
                                     </b-field>
                                 </div>
                                 <div class="column">
-                                    <b-field label="Father Suffix" label-position="on-border"
-                                             :type="this.errors.father_suffix ? 'is-danger':''"
-                                             :message="this.errors.father_suffix ? this.errors.father_suffix[0] : ''">
-                                        <b-input type="text" v-model="fields.father_suffix" placeholder="Father Suffix" icon="account"></b-input>
+                                    <b-field label="Father Extension" label-position="on-border"
+                                             :type="this.errors.father_extension ? 'is-danger':''"
+                                             :message="this.errors.father_extension ? this.errors.father_extension[0] : ''">
+                                        <b-input type="text" v-model="fields.father_extension" placeholder="Father Extension" icon="account"></b-input>
                                     </b-field>
                                 </div>
                             </div>
@@ -463,10 +463,10 @@
                                     </b-field>
                                 </div>
                                 <div class="column">
-                                    <b-field label="Mother Suffix" label-position="on-border"
-                                             :type="this.errors.mother_suffix ? 'is-danger':''"
-                                             :message="this.errors.mother_suffix ? this.errors.mother_suffix[0] : ''">
-                                        <b-input type="text" v-model="fields.mother_suffix" placeholder="Father Suffix" icon="account"></b-input>
+                                    <b-field label="Mother Extension" label-position="on-border"
+                                             :type="this.errors.mother_extension ? 'is-danger':''"
+                                             :message="this.errors.mother_extension ? this.errors.mother_extension[0] : ''">
+                                        <b-input type="text" v-model="fields.mother_extension" placeholder="Father Extension" icon="account"></b-input>
                                     </b-field>
                                 </div>
                             </div>
@@ -1009,7 +1009,7 @@
                                             v-model="fields.is_candidate_election">No</b-radio>
                                     </b-field>
                                     <b-field label="If YES, details" label-position="on-border">
-                                        <b-input type="text" v-model="fields.is_candiadte_election_yes" placeholder="Details"></b-input>
+                                        <b-input type="text" v-model="fields.is_candidate_election_yes" placeholder="Details"></b-input>
                                     </b-field>
                                 </div>
                             </div>
@@ -1155,7 +1155,11 @@
                         </div>
                         <div class="column">
                             <div class="buttons is-right">
-                                <b-button @click="submit" class="button is-primary">Update Information</b-button>
+                                <b-button @click="submit" 
+                                    :class="btnClass"
+                                    icon-left="content-save-all-outline">
+                                        <span class="has-text-weight-bold">Update Information</span>
+                                </b-button>
                             </div>
                         </div>
                     </div>
@@ -1221,6 +1225,12 @@ export default {
 
             learning_developments: [],
             specializations: [],
+
+            btnClass: {
+                'is-primary': true,
+                'button': true,
+                'is-loading': false
+            }
         }
     },
     methods: {
@@ -1268,9 +1278,8 @@ export default {
             this.fields.surname = this.user.lname;
             this.fields.fname = this.user.fname;
             this.fields.mname = this.user.mname;
-            this.fields.suffix = this.user.suffix;
+            this.fields.extension = this.user.extension;
             this.fields.sex = this.user.sex;
-            this.fields.school_assigned = this.user.school_assigned;
             this.fields.date_birth = new Date(this.user.date_birth);
             this.fields.place_birth = this.user.place_birth;
             this.fields.civil_status = this.user.civil_status;
@@ -1289,7 +1298,7 @@ export default {
             this.fields.spouse_surname = this.user.spouse_surname;
             this.fields.spouse_fname = this.user.spouse_fname;
             this.fields.spouse_mname = this.user.spouse_mname;
-            this.fields.spouse_suffix = this.user.spouse_suffix;
+            this.fields.spouse_extension = this.user.spouse_extension;
             //businees
             this.fields.business_name = this.user.business_name;
             this.fields.business_address = this.user.business_address;
@@ -1299,13 +1308,13 @@ export default {
             this.fields.father_surname = this.user.father_surname;
             this.fields.father_fname = this.user.father_fname;
             this.fields.father_mname = this.user.father_mname;
-            this.fields.father_suffix = this.user.father_suffix;
+            this.fields.father_extension = this.user.father_extension;
 
             //mother
             this.fields.mother_maiden_name = this.user.mother_maiden_name;
             this.fields.mother_fname = this.user.mother_fname;
             this.fields.mother_mname = this.user.mother_mname;
-            this.fields.mother_suffix = this.user.mother_suffix;
+            this.fields.mother_extension = this.user.mother_extension;
 
 
             //nested axios for getting the address 1 by 1 or request by request
@@ -1440,10 +1449,11 @@ export default {
             this.fields.is_separated = this.user.is_separated;
             this.fields.is_separated_yes_details = this.user.is_separated_yes_details;
             this.fields.is_candidate_election = this.user.is_candidate_election;
-            this.fields.is_candiadte_election_yes = this.user.is_candiadte_election_yes;
+            this.fields.is_candidate_election_yes = this.user.is_candidate_election_yes;
             this.fields.is_resigned = this.user.is_resigned;
             this.fields.is_resigned = this.user.is_resigned;
             this.fields.is_resigned_yes = this.user.is_resigned_yes;
+            this.fields.is_immigrant = this.user.is_immigrant;
             this.fields.is_immigrant_yes = this.user.is_immigrant_yes;
             this.fields.is_indigenous = this.user.is_indigenous;
             this.fields.is_indigenous_yes = this.user.is_indigenous_yes;
@@ -1455,22 +1465,29 @@ export default {
         },
 
         submit(){
-
+            this.btnClass['is-loading'] = true;
             //formData.append('fields', this.fields);
             axios.post('/personal-data-sheet-update/' + this.user.user_id, this.fields).then(res=>{
                 if(res.data.status === 'saved'){
+                    this.btnClass['is-loading'] = false;
                     this.$buefy.dialog.alert({
                         title: "UPDATED!",
                         message: 'Profile updated successfully',
                         type: 'is-success',
-                        onConfirm: ()=>  window.location = '/faculty/personal-data-sheet'
+                        onConfirm: ()=>  window.location = '/personal-data-sheet'
                     });
                 }
+
             }).catch(err=>{
+                this.btnClass['is-loading'] = false;
                 if(err.response.status === 422){
                     this.errors = err.response.data.errors;
                 }else{
-                    alert('An error occured.');
+                    this.$buefy.dialog.alert({
+                        title: "ERROR!",
+                        message: 'Something went wrong. Please contact system administrator.',
+                        type: 'is-danger',
+                    });
                 }
             });
         },

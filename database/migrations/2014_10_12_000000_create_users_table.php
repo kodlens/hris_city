@@ -63,7 +63,7 @@ class CreateUsersTable extends Migration
             $table->string('spouse_surname')->nullable();
             $table->string('spouse_fname')->nullable();
             $table->string('spouse_mname')->nullable();
-            $table->string('spouse_suffix')->nullable();
+            $table->string('spouse_extension')->nullable();
             $table->string('spouse_occupation')->nullable();
 
             $table->string('business_name')->nullable();
@@ -73,12 +73,12 @@ class CreateUsersTable extends Migration
             $table->string('father_surname')->nullable();
             $table->string('father_fname')->nullable();
             $table->string('father_mname')->nullable();
-            $table->string('father_suffix')->nullable();
+            $table->string('father_extension')->nullable();
 
             $table->string('mother_maiden_name')->nullable();
             $table->string('mother_fname')->nullable();
             $table->string('mother_mname')->nullable();
-            $table->string('mother_suffix')->nullable();
+            $table->string('mother_extension')->nullable();
 
             $table->string('role')->nullable();
 

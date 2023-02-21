@@ -75,32 +75,32 @@ export default{
     },
 
     methods: {
-        loadSeminars(){
-            axios.get('/hrld/get-seminars').then(res=>{
-                this.serminars = res.data
-            }).catch(err=>{
+        // loadSeminars(){
+        //     axios.get('/hrld/get-seminars').then(res=>{
+        //         this.serminars = res.data
+        //     }).catch(err=>{
 
-            })
-        },
+        //     })
+        // },
 
-        imIn(post){
+        // imIn(post){
            
-            this.fields = post;
+        //     this.fields = post;
 
-            //console.log(postId);
-            axios.post('/seminar-im-in', this.fields).then(res=>{
-                if(res.data.status === 'saved'){
-                    this.$buefy.dialog.alert({
-                        title: "Saved!",
-                        message: 'Request recorded successfully.',
-                        type: 'is-success',
-                        onConfirm: ()=>  this.loadSeminars()
-                    });
-                }
-            }).catch(err=>{
+        //     //console.log(postId);
+        //     axios.post('/seminar-im-in', this.fields).then(res=>{
+        //         if(res.data.status === 'saved'){
+        //             this.$buefy.dialog.alert({
+        //                 title: "Saved!",
+        //                 message: 'Request recorded successfully.',
+        //                 type: 'is-success',
+        //                 onConfirm: ()=>  this.loadSeminars()
+        //             });
+        //         }
+        //     }).catch(err=>{
             
-            })
-        }
+        //     })
+        // }
     },
 
     mounted(){

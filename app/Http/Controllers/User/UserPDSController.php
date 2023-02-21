@@ -55,7 +55,6 @@ class UserPDSController extends Controller
         $req->validate([
             'surname' => ['required'],
             'fname' => ['required'],
-            'school_assigned' => ['required'],
             'sex' => ['required'],
             'email' => ['required', 'unique:users,email,'. $id . ',user_id'],
             'agency_idno' => ['required']
@@ -69,9 +68,8 @@ class UserPDSController extends Controller
         $data->lname = strtoupper($req->surname);
         $data->fname = strtoupper($req->fname);
         $data->mname = strtoupper($req->mname);
-        $data->suffix = strtoupper($req->suffix);
+        $data->extension = strtoupper($req->extension);
         $data->sex = strtoupper($req->sex);
-        $data->school_assigned = strtoupper($req->school_assigned);
         $data->date_birth = $dob;
         $data->place_birth = strtoupper($req->place_birth);
         $data->civil_status = strtoupper($req->civil_status);
@@ -92,7 +90,7 @@ class UserPDSController extends Controller
         $data->spouse_surname = strtoupper($req->spouse_surname);
         $data->spouse_fname = strtoupper($req->spouse_fname);
         $data->spouse_mname = strtoupper($req->spouse_mname);
-        $data->spouse_suffix = strtoupper($req->spouse_suffix);
+        $data->spouse_extension = strtoupper($req->spouse_extension);
 
         //business
         $data->business_name = strtoupper($req->business_name);
@@ -103,13 +101,13 @@ class UserPDSController extends Controller
         $data->father_surname = strtoupper($req->father_surname);
         $data->father_fname = strtoupper($req->father_fname);
         $data->father_mname = strtoupper($req->father_mname);
-        $data->father_suffix = strtoupper($req->father_suffix);
+        $data->father_extension = strtoupper($req->father_extension);
 
         //mother
         $data->mother_maiden_name = strtoupper($req->mother_maiden_name);
         $data->mother_fname = strtoupper($req->mother_fname);
         $data->mother_mname = strtoupper($req->mother_mname);
-        $data->mother_suffix = strtoupper($req->mother_suffix);
+        $data->mother_extension = strtoupper($req->mother_extension);
 
         //address residential
         $data->res_province = $req->res_province;
@@ -248,7 +246,7 @@ class UserPDSController extends Controller
         $data->is_separated = $req->is_separated;
         $data->is_separated_yes_details = $req->is_separated_yes_details;
         $data->is_candidate_election = $req->is_candidate_election;
-        $data->is_candiadte_election_yes = $req->is_candiadte_election_yes;
+        $data->is_candidate_election_yes = $req->is_candidate_election_yes;
         $data->is_resigned = $req->is_resigned;
         $data->is_resigned_yes = $req->is_resigned_yes;
         $data->is_immigrant = $req->is_immigrant;
