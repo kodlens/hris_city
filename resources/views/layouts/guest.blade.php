@@ -25,7 +25,7 @@
           </a> --}}
 
             <a class="navbar-item" href="https://bulma.io">
-                <h1 class="ml-5" style="font-weight: bolder; font-size: 2em;">HRIS</h1>
+                <h1 class="ml-5" style="font-weight: bolder; font-size: 2em;">LeaMS</h1>
             </a>
       
             <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">

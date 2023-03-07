@@ -50323,7 +50323,7 @@ var staticRenderFns = [
           _c(
             "div",
             { staticStyle: { "font-weight": "bold", "font-size": "5em" } },
-            [_vm._v("TEL MS")]
+            [_vm._v("LeaMS")]
           ),
           _vm._v(" "),
           _c("p", { staticClass: "subtitle" }, [

@@ -7,7 +7,7 @@
 
         <div class="welcome-card-container">
             <div class="welcome-card">
-                <div style="font-weight: bold; font-size: 5em;">TEL MS</div>
+                <div style="font-weight: bold; font-size: 5em;">LeaMS</div>
                 <p class="subtitle">A Multiplatform Employee Leave Management System for the LGU of Tangub City</p>
             </div>
 
