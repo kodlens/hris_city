@@ -54,7 +54,7 @@
                             <b-field label="Contact No." label-position="on-border"
                                         :type="this.errors.contact_no ? 'is-danger':''"
                                         :message="this.errors.contact_no ? this.errors.contact_no[0] : ''">
-                                <b-input type="text" v-model="fields.contact_no" icon="cellphone"></b-input>
+                                <b-input type="text" v-model="fields.contact_no" icon="cellphone" placeholder="Contact No."></b-input>
                             </b-field>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
                             <b-field label="Last Name" label-position="on-border"
                                         :type="this.errors.lname ? 'is-danger':''"
                                         :message="this.errors.lname ? this.errors.lname[0] : ''" >
-                                <b-input icon="account" placeholder="First Lastname" v-model="fields.lname" type="text"></b-input>
+                                <b-input icon="account" placeholder="Last Name" v-model="fields.lname" type="text"></b-input>
                             </b-field>
                         </div>
                         <div class="column">
@@ -104,6 +104,16 @@
                         </div>
                     </div>
 
+
+                    <h2><span class="has-text-weight-bold">EMPLOYMENT INFORMATION</span></h2>
+                    <b-field label="Employment Role" expanded label-position="on-border"
+                                :type="this.errors.role ? 'is-danger':''"
+                                :message="this.errors.role ? this.errors.role[0] : ''">
+                        <b-select placeholder="Employment Role" v-model="fields.role" icon="account-supervisor-outline" required expanded>
+                            <option value="STAFF">STAFF</option>
+                            <option value="FACULTY">FACULTY (FOR TEACHER)</option>
+                        </b-select>
+                    </b-field>
 
                     <h2><span class="has-text-weight-bold">RESIDENTIAL ADDRESS</span></h2>
                     <div class="columns">

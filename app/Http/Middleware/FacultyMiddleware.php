@@ -20,11 +20,6 @@ class FacultyMiddleware
     {
         $user = Auth::user();
 
-        if($user->is_verified === 0){
-            return redirect('/pending-page');
-        }
-
-
         if($user->role === 'FACULTY'){
             return $next($request);
         }

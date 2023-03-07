@@ -18,7 +18,7 @@ class UserMiddleware
     public function handle(Request $request, Closure $next)
     {
         $role = Auth::user()->role;
-        if($role === 'USER'){
+        if($role === 'USER' || $role === 'FACULTY'){
             return $next($request);
         }
 

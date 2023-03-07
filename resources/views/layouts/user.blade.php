@@ -22,16 +22,119 @@
 </head>
 
 <body>
+
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          {{-- <a class="navbar-item" href="https://bulma.io">
+            <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+          </a> --}}
+
+            <a class="navbar-item" href="https://bulma.io">
+                <h1 class="ml-5" style="font-weight: bolder; font-size: 2em;">HRIS</h1>
+            </a>
+      
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+      
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+
+            {{-- <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        More
+                    </a>
+        
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item">
+                            About
+                        </a>
+                        <a class="navbar-item">
+                            Jobs
+                        </a>
+                        <a class="navbar-item">
+                            Contact
+                        </a>
+                        <hr class="navbar-divider">
+                        <a class="navbar-item">
+                            Report an issue
+                        </a>
+                    </div>
+                </div> --}}
+            </div>
+      
+          <div class="navbar-end">
+            <a class="navbar-item" href="/home">
+                Home
+            </a>
+            <a class="navbar-item" href="/personal-data-sheet">
+                Personal Data Sheet
+            </a>
+
+            <div class="navbar-item has-dropdown is-hoverable">
+                <div class="navbar-dropdown">
+                    <a class="navbar-item" href="/change-password">
+                        Change Password
+                    </a>
+                </div>
+            </div>
+            
+            <div class="navbar-item">
+              <div class="buttons">
+                <a class="button is-outlined is-danger" onclick="logout()">
+                    Log out
+                    <i class="mdi mdi-logout"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <form id="form-logout" action="/logout" method="post">
+        @csrf
+      </form>
+
+
     <div id="app">
-
-        <user-navbar></user-navbar>
-
         <div>
             @yield('content')
         </div>
 
         <footer-page></footer-page>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // Get all "navbar-burger" elements
+            const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+            // Add a click event on each of them
+            $navbarBurgers.forEach( el => {
+                el.addEventListener('click', () => {
+
+                    // Get the target from the "data-target" attribute
+                    const target = el.dataset.target;
+                    const $target = document.getElementById(target);
+
+                    // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+                    el.classList.toggle('is-active');
+                    $target.classList.toggle('is-active');
+
+                });
+            });
+
+        });
+
+        function logout(){
+            document.getElementById('form-logout').submit();
+        }
+
+    </script>
 </body>
 
 </html>

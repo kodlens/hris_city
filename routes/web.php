@@ -98,33 +98,39 @@ Route::get('/pending-page', function(){
 Route::post('/reset-password',[App\Http\Controllers\Auth\ChangePasswordController::class, 'changePassword']);;
 
 
-Route::resource('/home', App\Http\Controllers\User\UserHomeController::class);
-//Route::post('/seminar-im-in', [App\Http\Controllers\User\UserHomeController::class, 'imIn']);
-
-Route::resource('/personal-data-sheet', App\Http\Controllers\User\UserPDSController::class);
-Route::post('/personal-data-sheet-update/{id}', [App\Http\Controllers\User\UserPDSController::class, 'update']);
-
-Route::resource('/educational-backgrounds', App\Http\Controllers\Faculty\FacultyEducationalBackgroundController::class);
-Route::resource('/children', App\Http\Controllers\Faculty\FacultyChildController::class);
-Route::resource('/eligibilities', App\Http\Controllers\Faculty\FacultyCSEController::class);
-Route::resource('/work-experiences', App\Http\Controllers\Faculty\FacultyWorkExperienceController::class);
-Route::resource('/learning-developments', App\Http\Controllers\Faculty\FacultyLearningDevelopmentController::class);
-Route::resource('/other-informations', App\Http\Controllers\Faculty\FacultyOtherInformationController::class);
-
-Route::resource('/trainings-interventions', App\Http\Controllers\Faculty\TrainingInterventionController::class);
-Route::post('/trainings-interventions-update/{id}', [App\Http\Controllers\Faculty\TrainingInterventionController::class, 'update']);
-
-Route::get('/get-learning-trainings', [App\Http\Controllers\Faculty\TrainingInterventionController::class, 'getLearningTrainings']);
-
-//certificates
-Route::post('/upload-certificates/{id}', [App\Http\Controllers\Faculty\CertificateController::class, 'upload']);
-Route::delete('/remove-certificate/{id}', [App\Http\Controllers\Faculty\CertificateController::class, 'delete']);
 
 
+//USER MIDDLEWARE
+Route::middleware(['auth', 'user'])->group(function(){
+        
+    Route::resource('/home', App\Http\Controllers\User\UserHomeController::class);
+    //Route::post('/seminar-im-in', [App\Http\Controllers\User\UserHomeController::class, 'imIn']);
+
+    Route::resource('/personal-data-sheet', App\Http\Controllers\User\UserPDSController::class);
+    Route::post('/personal-data-sheet-update/{id}', [App\Http\Controllers\User\UserPDSController::class, 'update']);
+
+    Route::resource('/educational-backgrounds', App\Http\Controllers\Faculty\FacultyEducationalBackgroundController::class);
+    Route::resource('/children', App\Http\Controllers\Faculty\FacultyChildController::class);
+    Route::resource('/eligibilities', App\Http\Controllers\Faculty\FacultyCSEController::class);
+    Route::resource('/work-experiences', App\Http\Controllers\Faculty\FacultyWorkExperienceController::class);
+    Route::resource('/learning-developments', App\Http\Controllers\Faculty\FacultyLearningDevelopmentController::class);
+    Route::resource('/other-informations', App\Http\Controllers\Faculty\FacultyOtherInformationController::class);
+
+    Route::resource('/trainings-interventions', App\Http\Controllers\Faculty\TrainingInterventionController::class);
+    Route::post('/trainings-interventions-update/{id}', [App\Http\Controllers\Faculty\TrainingInterventionController::class, 'update']);
+
+    Route::get('/get-learning-trainings', [App\Http\Controllers\Faculty\TrainingInterventionController::class, 'getLearningTrainings']);
+
+    //certificates
+    Route::post('/upload-certificates/{id}', [App\Http\Controllers\Faculty\CertificateController::class, 'upload']);
+    Route::delete('/remove-certificate/{id}', [App\Http\Controllers\Faculty\CertificateController::class, 'delete']);
 
 
-//PDS API need user id to generate DPS
-Route::get('/display-pds/{id}', [App\Http\Controllers\PDSController::class, 'index']);
+    //PDS API need user id to generate DPS
+    Route::get('/display-pds/{id}', [App\Http\Controllers\PDSController::class, 'index']);
+
+
+});
 
 Route::get('/session', function(){
     return Session::all();

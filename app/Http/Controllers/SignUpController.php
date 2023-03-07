@@ -24,8 +24,8 @@ class SignUpController extends Controller
             'lname' => ['required', 'string', 'max:100'],
             'fname' => ['required', 'string', 'max:100'],
             'sex' => ['required', 'string', 'max:20'],
-            'school_assigned' => ['required'],
             'email' => ['required', 'unique:users'],
+            'role' => ['required', 'string', 'max:20'],
             'password' => ['required', 'string', 'confirmed'],
             'res_province' => ['required', 'string'],
             'res_city' => ['required', 'string'],
@@ -33,7 +33,9 @@ class SignUpController extends Controller
             'agency_idno' => ['required'],
             //'skill_hobbies' => ['required']
         ],[
-            'agency_idno.required' => 'Agency No or Id No. is required.'
+            'agency_idno.required' => 'Agency No or Id No. is required.',
+            'role.required' => 'Employment role is required.'
+
         ]);
 
 
@@ -49,7 +51,6 @@ class SignUpController extends Controller
             'mname' => strtoupper($req->mname),
             'extension' => strtoupper($req->extension),
             'sex' => $req->sex,
-            'school_assigned' => strtoupper($req->school_assigned),
             'contact_no' => $req->contact_no,
             'role' => 'FACULTY',
             'res_province' => $req->res_province,

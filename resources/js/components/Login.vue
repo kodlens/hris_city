@@ -57,7 +57,7 @@ export default {
                     if (res.data.role === "ADMINISTRATOR") {
                         window.location = "/admin-home";
                     }
-                    if (res.data.role === "USER") {
+                    if (res.data.role === "USER" || res.data.role === 'FACULTY') {
                         window.location = "/home";
                     }
                    

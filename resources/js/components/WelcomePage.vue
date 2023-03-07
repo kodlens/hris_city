@@ -7,8 +7,8 @@
 
         <div class="welcome-card-container">
             <div class="welcome-card">
-                <div style="font-weight: bold; font-size: 5em;">HRIS</div>
-                <p class="subtitle">Human Resource Information System</p>
+                <div style="font-weight: bold; font-size: 5em;">TEL MS</div>
+                <p class="subtitle">A Multiplatform Employee Leave Management System for the LGU of Tangub City</p>
             </div>
 
             <div class="welcome-card">
@@ -21,12 +21,12 @@
                 </div>
                 <div class="welcome-buttons">
                   
-                    <b-button class="w-button is-outlined is-info" tag="a" href="/sign-up">
+                    <!-- <b-button class="w-button is-outlined is-info" tag="a" href="/sign-up">
                         <span style="font-weight: bold;">SIGN UP</span>
                     </b-button>
                     <b-button class="w-button is-outlined is-primary" tag="a" href="/login">
                         <span style="font-weight: bold;">LOGIN</span>
-                    </b-button>
+                    </b-button> -->
                 </div>
             </div>
         </div>
@@ -77,7 +77,7 @@ export default {
         background: white;
         padding: 20px;
         height: 500px;
-        width: 600px;
+        max-width: 600px;
     }
 
     .welcome-buttons{
@@ -100,6 +100,19 @@ export default {
             width: 100%;
             margin: 0;
         }
+
+
+         .welcome-card-container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .welcome-card{
+            margin: 15px;
+        }
+
     }
 
     @media only screen and (max-width: 480px) {
@@ -112,6 +125,13 @@ export default {
 
         .main-subtitle{
             font-size: .8em;
+        }
+
+        .welcome-card{
+            background: white;
+            padding: 20px;
+            height: 500px;
+            margin: 15px;
         }
 
     }
