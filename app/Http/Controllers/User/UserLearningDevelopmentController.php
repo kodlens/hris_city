@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Faculty;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -9,7 +9,7 @@ use App\Models\LearningDevelopment;
 use Illuminate\Support\Facades\Storage;
 
 
-class FacultyLearningDevelopmentController extends Controller
+class UserLearningDevelopmentController extends Controller
 {
     //
 

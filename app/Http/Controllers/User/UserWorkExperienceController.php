@@ -1,14 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Faculty;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\OtherInformation;
+use App\Models\WorkExperience;
 
-class FacultyOtherInformationController extends Controller
+
+
+class UserWorkExperienceController extends Controller
 {
     //
+
 
     public function __construct(){
         $this->middleware('auth');
@@ -16,7 +19,8 @@ class FacultyOtherInformationController extends Controller
 
 
     public function destroy($id){
-        OtherInformation::destroy($id);
+        WorkExperience::destroy($id);
+
         return response()->json([
             'status' => 'deleted'
         ],200);
