@@ -36,7 +36,9 @@ Route::get('/get-open-specializations', [App\Http\Controllers\OpenController::cl
 
 
 Auth::routes([
-    'login' => 'false'
+    'login' => 'false',
+    'logout' => 'false'
+
 ]);
 
 Route::get('/load-user', function(){
@@ -49,7 +51,6 @@ Route::get('/load-user', function(){
 
 
 Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'login']);
-
 Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout']);
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

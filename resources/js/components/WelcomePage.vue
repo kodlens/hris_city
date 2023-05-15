@@ -37,7 +37,7 @@
 
 <script>
 export default {
-    props: ['propUser'],
+    
     data(){
         return{
             locale: undefined,

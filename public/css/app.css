@@ -26631,12 +26631,6 @@
   }
 }
 @charset "UTF-8";
-html,
-body {
-  background: #ebebeb;
-  min-height: 100vh;
-}
-
 @media screen and (max-width: 1023px) {
   .b-sidebar .sidebar-content.is-mini-mobile:not(.is-mini-expand) .menu-list li a span:nth-child(2), .b-sidebar .sidebar-content.is-mini-mobile.is-mini-expand:not(:hover):not(.is-mini-delayed) .menu-list li a span:nth-child(2) {
     display: none;
@@ -31363,7 +31357,7 @@ button.dropdown-item.is-active {
 
 .navbar {
   background-color: white;
-  min-height: 5rem;
+  min-height: 3.25rem;
   position: relative;
   z-index: 30;
 }
@@ -31930,7 +31924,7 @@ button.dropdown-item.is-active {
 .navbar > .container {
   align-items: stretch;
   display: flex;
-  min-height: 5rem;
+  min-height: 3.25rem;
   width: 100%;
 }
 .navbar.has-shadow {
@@ -31954,11 +31948,11 @@ button.dropdown-item.is-active {
 
 html.has-navbar-fixed-top,
 body.has-navbar-fixed-top {
-  padding-top: 5rem;
+  padding-top: 3.25rem;
 }
 html.has-navbar-fixed-bottom,
 body.has-navbar-fixed-bottom {
-  padding-bottom: 5rem;
+  padding-bottom: 3.25rem;
 }
 
 .navbar-brand,
@@ -31966,7 +31960,7 @@ body.has-navbar-fixed-bottom {
   align-items: stretch;
   display: flex;
   flex-shrink: 0;
-  min-height: 5rem;
+  min-height: 3.25rem;
 }
 
 .navbar-brand a.navbar-item:focus, .navbar-brand a.navbar-item:hover {
@@ -31984,9 +31978,9 @@ body.has-navbar-fixed-bottom {
   color: #4a4a4a;
   cursor: pointer;
   display: block;
-  height: 5rem;
+  height: 3.25rem;
   position: relative;
-  width: 5rem;
+  width: 3.25rem;
   margin-left: auto;
 }
 .navbar-burger span {
@@ -32059,7 +32053,7 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
   flex-shrink: 0;
 }
 .navbar-item img {
-  max-height: 4rem;
+  max-height: 1.75rem;
 }
 .navbar-item.has-dropdown {
   padding: 0;
@@ -32070,7 +32064,7 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
 }
 .navbar-item.is-tab {
   border-bottom: 1px solid transparent;
-  min-height: 5rem;
+  min-height: 3.25rem;
   padding-bottom: calc(0.5rem - 1px);
 }
 .navbar-item.is-tab:focus, .navbar-item.is-tab:hover {
@@ -32159,17 +32153,17 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
   }
   .navbar.is-fixed-top .navbar-menu, .navbar.is-fixed-top-touch .navbar-menu {
     -webkit-overflow-scrolling: touch;
-    max-height: calc(100vh - 5rem);
+    max-height: calc(100vh - 3.25rem);
     overflow: auto;
   }
 
   html.has-navbar-fixed-top-touch,
 body.has-navbar-fixed-top-touch {
-    padding-top: 5rem;
+    padding-top: 3.25rem;
   }
   html.has-navbar-fixed-bottom-touch,
 body.has-navbar-fixed-bottom-touch {
-    padding-bottom: 5rem;
+    padding-bottom: 3.25rem;
   }
 }
 @media screen and (min-width: 1024px) {
@@ -32182,7 +32176,7 @@ body.has-navbar-fixed-bottom-touch {
   }
 
   .navbar {
-    min-height: 5rem;
+    min-height: 3.25rem;
   }
   .navbar.is-spaced {
     padding: 1rem 2rem;
@@ -32338,19 +32332,19 @@ body.has-navbar-fixed-bottom-touch {
 
   html.has-navbar-fixed-top-desktop,
 body.has-navbar-fixed-top-desktop {
-    padding-top: 5rem;
+    padding-top: 3.25rem;
   }
   html.has-navbar-fixed-bottom-desktop,
 body.has-navbar-fixed-bottom-desktop {
-    padding-bottom: 5rem;
+    padding-bottom: 3.25rem;
   }
   html.has-spaced-navbar-fixed-top,
 body.has-spaced-navbar-fixed-top {
-    padding-top: 7rem;
+    padding-top: 5.25rem;
   }
   html.has-spaced-navbar-fixed-bottom,
 body.has-spaced-navbar-fixed-bottom {
-    padding-bottom: 7rem;
+    padding-bottom: 5.25rem;
   }
 
   a.navbar-item.is-active,
@@ -32367,7 +32361,7 @@ body.has-spaced-navbar-fixed-bottom {
   }
 }
 .hero.is-fullheight-with-navbar {
-  min-height: calc(100vh - 5rem);
+  min-height: calc(100vh - 3.25rem);
 }
 
 .pagination {
