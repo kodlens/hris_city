@@ -18,8 +18,15 @@ class UserMiddleware
     public function handle(Request $request, Closure $next)
     {
         $role = Auth::user()->role;
-        if($role === 'USER' || $role === 'FACULTY'){
-            return $next($request);
+        
+        if($role == 'USER' || $role === 'FACULTY'){
+
+            $response = $next($request);
+            $response->headers->set('Cache-Control', 'no-cache, no-store, must-revalidate');
+            $response->headers->set('Pragma', 'no-cache');
+            $response->headers->set('Expires', '0');
+
+            return $response;
         }
 
         abort(403);

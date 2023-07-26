@@ -1,36 +1,8 @@
 <template>
     <div>
-       
-        <div class="w-hero">
 
-        </div>
 
-        <div class="welcome-card-container">
-            <div class="welcome-card">
-                <div style="font-weight: bold; font-size: 5em;">LeaMS</div>
-                <p class="subtitle">A Multiplatform Employee Leave Management System for the LGU of Tangub City</p>
-            </div>
-
-            <div class="welcome-card">
-                <div>
-                    <div class="subtitle has-text-weight-bold mb-5 is-size-4">
-                        <blockquote>
-                            Setup your account and manage your own information in an easy way.
-                        </blockquote>
-                    </div>
-                </div>
-                <div class="welcome-buttons">
-                  
-                    <!-- <b-button class="w-button is-outlined is-info" tag="a" href="/sign-up">
-                        <span style="font-weight: bold;">SIGN UP</span>
-                    </b-button>
-                    <b-button class="w-button is-outlined is-primary" tag="a" href="/login">
-                        <span style="font-weight: bold;">LOGIN</span>
-                    </b-button> -->
-                </div>
-            </div>
-        </div>
-
+        
 
     </div> <!--root div-->
 </template>
@@ -68,7 +40,6 @@ export default {
 
     .welcome-card-container{
         display: flex;
-        margin-top: -250px;
         gap: 10px;
         justify-content: center;
     }

@@ -1,7 +1,7 @@
-@extends('layouts.app')
 
 
-@section('extracss')
+
+<?php $__env->startSection('extracss'); ?>
     <style>
         .welcome-container{
             max-width: 1200px;
@@ -20,8 +20,8 @@
         }
        
     </style>
-@endsection
-@section('content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
 
     <div class="welcome-container">
         <div class="columns is-centered w-margin-top">
@@ -45,4 +45,6 @@
         </div>
     </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\etien\OneDrive\Desktop\Github Proj\hris_city\resources\views/welcome.blade.php ENDPATH**/ ?>

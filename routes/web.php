@@ -25,7 +25,7 @@ use App\Models\DentistSchedule;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->middleware('guest');
 
 
 

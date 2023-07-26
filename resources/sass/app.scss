@@ -88,10 +88,6 @@
     }
 }
 
-.box {
-    border-left: 5px solid #f17c2e;
-}
-
 .box-heading {
     font-weight: bold;
     font-size: 1.4em;
@@ -209,9 +205,7 @@ h2 span {
         display: none;
     }
     /* // if print display none elements */
-    html body {
-        background-color: white;
-    }
+
     .footer-container {
         display: none;
     }
@@ -237,19 +231,16 @@ h2 span {
         padding: 5px 5px 5px 3px;
     }
 
-    
-    
     .w-td-150 {
         width: 200px !important;
     }
 }
 
 @page {
-    size: 8.5in 13in;
-    
-    }
+    size: 8.5in 13in; 
+}
 
-@import "custom.scss";
+//@import "custom.scss";
 
 @import "~buefy/src/scss/buefy";
 // Import only what you need from Bulma
@@ -262,3 +253,51 @@ h2 span {
 //@import "~bulma/sass/components/navbar.sass";
 //@import "~bulma/sass/layout/hero.sass";
 //@import "~bulma/sass/layout/section.sass";
+
+html {
+    background-color: #F8F1F1;
+}
+
+.navbar{
+    border-bottom: 1px solid $primary;
+}
+
+
+
+.logo-container{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+.logo{
+    height: 100px;
+}
+
+
+@media screen and (max-width: 480px) {
+    .box, .title-content{
+        margin: 0 15px;
+    }
+    .title-content .welcome-title, .welcome-subtitle{
+        text-align: center;
+    }
+    
+}
+
+@media screen and (max-width: 768px) {
+    .box, .title-content{
+        margin: 0 15px;
+    }
+    .title-content .welcome-title, .welcome-subtitle{
+        text-align: center;
+    }
+    
+}
+
+@media screen and (max-width: 1200px) {
+    .box, .title-content{
+        margin: 0 20px;
+    }
+    
+}
+  

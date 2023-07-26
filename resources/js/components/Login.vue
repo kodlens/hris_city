@@ -17,7 +17,6 @@
                             <b-input type="text" v-model="fields.username" placeholder="Username" />
                         </b-field>
 
-                        
 
                         <b-field label="Password" label-position="on-border">
                             <b-input type="password" v-model="fields.password" password-reveal placeholder="Password" />
