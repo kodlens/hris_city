@@ -3,21 +3,7 @@
 
 @section('extracss')
     <style>
-        .welcome-container{
-            max-width: 1200px;
-            margin: 10rem auto;
-            /* height: calc(100vh - 20vh); */
-            /* border: 1px solid blue; */
-        }
-
-        .welcome-title{
-            font-size: 3em;
-            font-weight: bolder;
-        }
-
-        .welcome-subtitle{
-            font-size: 2em;
-        }
+        
        
     </style>
 @endsection
